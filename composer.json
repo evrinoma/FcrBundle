@@ -1,0 +1,57 @@
+{
+    "name": "evrinoma/fcr-bundle",
+    "description": "Fcr",
+    "keywords": [
+        "Rc",
+        "Responsibility center",
+        "Fcr",
+        "Financial responsibility center"
+    ],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nikolay Nikolaev",
+            "email": "evrinoma@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "evrinoma/utils-bundle": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Evrinoma\\FcrBundle\\": "src/"
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "symfony/phpunit-bridge": "^5.0",
+        "symfony/yaml": "^5.0",
+        "symfony/browser-kit": "^5.2",
+        "symfony/intl": "5.3.*",
+        "symfony/form": "5.2.*",
+        "symfony/validator": "5.2.*",
+        "phpunit/phpunit": "^9.5.2",
+        "friendsofsymfony/rest-bundle": "^3",
+        "nelmio/api-doc-bundle": "^4",
+        "doctrine/annotations": "^1.0",
+        "doctrine/doctrine-bundle": "^2.1",
+        "doctrine/doctrine-migrations-bundle": "^3.0",
+        "doctrine/orm": "^2.8",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
+        "jms/serializer-bundle": "^3.1",
+        "symfony/dotenv": "5.2.*",
+        "evrinoma/test-utils-bundle": "dev-master"
+    },
+    "repositories": {
+        "utils": {
+            "type": "vcs",
+            "url": "https://github.com/evrinoma/UtilsBundle.git"
+        }
+    }
+}
