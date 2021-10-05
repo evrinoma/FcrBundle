@@ -3,6 +3,7 @@
 namespace Evrinoma\FcrBundle;
 
 
+use Evrinoma\FcrBundle\DependencyInjection\EvrinomaFcrExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class EvrinomaFcrBundle extends Bundle
