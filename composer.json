@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^7.4",
+        "evrinoma/dto-common": "dev-master",
         "evrinoma/utils-bundle": "dev-master"
     },
     "autoload": {
@@ -49,6 +50,10 @@
         "evrinoma/test-utils-bundle": "dev-master"
     },
     "repositories": {
+        "dto-common": {
+            "type": "vcs",
+            "url": "https://github.com/evrinoma/DtoCommon.git"
+        },
         "utils": {
             "type": "vcs",
             "url": "https://github.com/evrinoma/UtilsBundle.git"
