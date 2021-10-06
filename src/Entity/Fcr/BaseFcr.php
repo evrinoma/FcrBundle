@@ -1,6 +1,6 @@
 <?php
 
-namespace Evrinoma\FcrBundle\Entity;
+namespace Evrinoma\FcrBundle\Entity\Fcr;
 
 use Evrinoma\FcrBundle\Model\Fcr\AbstractFcr;
 

@@ -3,7 +3,7 @@
 namespace Evrinoma\FcrBundle\Factory;
 
 use Evrinoma\FcrBundle\Dto\FcrApiDtoInterface;
-use Evrinoma\FcrBundle\Entity\BaseFcr;
+use Evrinoma\FcrBundle\Entity\Fcr\BaseFcr;
 use Evrinoma\FcrBundle\Model\Fcr\FcrInterface;
 
 class FcrFactory

@@ -4,7 +4,7 @@
 namespace Evrinoma\FcrBundle\Validator;
 
 
-use Evrinoma\FcrBundle\Entity\BaseFcr;
+use Evrinoma\FcrBundle\Entity\Fcr\BaseFcr;
 use Evrinoma\UtilsBundle\Validator\AbstractValidator;
 
 final class FcrValidator extends AbstractValidator
