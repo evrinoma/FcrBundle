@@ -43,3 +43,24 @@ services:
   Evrinoma\FcrBundle\Validator\FcrValidator:
     alias: evrinoma.fcr.validator
 
+  evrinoma.fcr.query.mediator:
+    class: Evrinoma\FcrBundle\Mediator\QueryMediator
+    public: true
+    arguments:
+
+  Evrinoma\FcrBundle\Mediator\QueryMediator:
+    alias: evrinoma.fcr.query.mediator
+
+  Evrinoma\FcrBundle\Mediator\QueryMediatorInterface:
+    alias: evrinoma.fcr.query.mediator
+
+  evrinoma.fcr.command.mediator:
+    class: Evrinoma\FcrBundle\Mediator\CommandMediator
+    public: true
+    arguments:
+
+  Evrinoma\FcrBundle\Mediator\CommandMediator:
+    alias: evrinoma.fcr.command.mediator
+
+  Evrinoma\FcrBundle\Mediator\CommandMediatorInterface:
+    alias: evrinoma.fcr.command.mediator
