@@ -83,7 +83,7 @@ class EvrinomaFcrExtension extends Extension
         $loader->load('validation.yml');
 
         if ($config['constraints']) {
-            $loader->load('constraint/bunch.yml');
+            $loader->load('constraint/fcr.yml');
         }
 
         $this->wireConstraintTag($container);
