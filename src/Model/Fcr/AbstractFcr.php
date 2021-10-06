@@ -5,6 +5,7 @@ namespace Evrinoma\FcrBundle\Model\Fcr;
 use Evrinoma\UtilsBundle\Entity\ActiveTrait;
 use Evrinoma\UtilsBundle\Entity\CreateUpdateAtTrait;
 use Evrinoma\UtilsBundle\Entity\IdTrait;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\MappedSuperclass

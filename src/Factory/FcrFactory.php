@@ -6,7 +6,7 @@ use Evrinoma\FcrBundle\Dto\FcrApiDtoInterface;
 use Evrinoma\FcrBundle\Entity\Fcr\BaseFcr;
 use Evrinoma\FcrBundle\Model\Fcr\FcrInterface;
 
-class FcrFactory
+class FcrFactory implements FcrFactoryInterface
 {
 //region SECTION: Fields
     private static string $entityClass = BaseFcr::class;
