@@ -1,0 +1,3 @@
+fcrapi:
+  resource: "@EvrinomaFcrBundle/Resources/config/routing/api.yml"
+  prefix: evrinoma

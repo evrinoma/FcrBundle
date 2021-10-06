@@ -1,0 +1,45 @@
+services:
+  Evrinoma\FcrBundle\Controller\FcrApiController:
+    alias: evrinoma.fcr.api.controller
+    public: true
+
+  evrinoma.fcr.api.controller:
+    class: Evrinoma\FcrBundle\Controller\FcrApiController
+    arguments:
+      - '@jms_serializer'
+      - '@request_stack'
+      - '@evrinoma.dto.factory'
+      - '@evrinoma.fcr.command.manager'
+      - '@evrinoma.fcr.query.manager'
+    autowire: true
+
+  evrinoma.fcr.factory:
+    class: Evrinoma\FcrBundle\Factory\FcrFactory
+    public: true
+    arguments:
+
+  evrinoma.fcr.repository:
+    class: Evrinoma\FcrBundle\Repository\FcrRepository
+    public: true
+    arguments:
+
+  evrinoma.fcr.command.manager:
+    class: Evrinoma\FcrBundle\Manager\CommandManager
+    arguments:
+      - '@evrinoma.fcr.validator'
+      - '@evrinoma.fcr.repository'
+      - '@evrinoma.fcr.factory'
+
+  evrinoma.fcr.query.manager:
+    class: Evrinoma\FcrBundle\Manager\QueryManager
+    arguments:
+      - '@evrinoma.fcr.repository'
+
+  evrinoma.fcr.validator:
+    class: Evrinoma\FcrBundle\Validator\FcrValidator
+    public: true
+    arguments:
+
+  Evrinoma\FcrBundle\Validator\FcrValidator:
+    alias: evrinoma.fcr.validator
+
