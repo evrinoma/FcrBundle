@@ -18,6 +18,9 @@ use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use OpenApi\Annotations as OA;
+use Nelmio\ApiDocBundle\Annotation\Model;
 
 final class FcrApiController extends AbstractApiController implements ApiControllerInterface
 {
@@ -60,8 +63,8 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      *             @OA\Schema(
      *               example={
      *                  "class":"Evrinoma\FcrBundle\Dto\FcrApiDto",
-     *                  ""
-     *
+     *                  "sys_id":"48",
+     *                  "description":"Интертех",
      *                  },
      *               type="object",
      *               @OA\Property(property="class",type="string",default="Evrinoma\FcrBundle\Dto\FcrApiDto"),

@@ -1,4 +1,3 @@
 fcr_api:
   resource: "@EvrinomaFcrBundle/Controller/FcrApiController.php"
   type: annotation
-
