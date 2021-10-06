@@ -29,6 +29,7 @@ services:
       - '@evrinoma.fcr.validator'
       - '@evrinoma.fcr.repository'
       - '@evrinoma.fcr.factory'
+      - '@evrinoma.fcr.command.mediator'
 
   evrinoma.fcr.query.manager:
     class: Evrinoma\FcrBundle\Manager\QueryManager
