@@ -66,8 +66,8 @@ class EvrinomaFcrExtension extends Extension
             $config,
             [
                 '' => [
-                    'db_driver'  => 'evrinoma.'.$this->getAlias().'.storage',
-                    'entity_fcr' => 'evrinoma.'.$this->getAlias().'.entity',
+                    'db_driver' => 'evrinoma.'.$this->getAlias().'.storage',
+                    'entity'    => 'evrinoma.'.$this->getAlias().'.entity',
                 ],
             ]
         );
@@ -94,8 +94,8 @@ class EvrinomaFcrExtension extends Extension
                 $config['decorates'],
                 [
                     '' => [
-                        'command_fcr' => 'evrinoma.'.$this->getAlias().'.decorates.command',
-                        'query_fcr'   => 'evrinoma.'.$this->getAlias().'.decorates.query',
+                        'command' => 'evrinoma.'.$this->getAlias().'.decorates.command',
+                        'query'   => 'evrinoma.'.$this->getAlias().'.decorates.query',
                     ],
                 ]
             );
