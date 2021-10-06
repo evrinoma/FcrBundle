@@ -121,9 +121,9 @@ class EvrinomaFcrExtension extends Extension
     {
         $definitionRepository    = $container->getDefinition('evrinoma.'.$this->getAlias().'.repository');
         $definitionQueryMediator = $container->getDefinition('evrinoma.'.$this->getAlias().'.query.mediator');
-        $definitionRepository->setArgument(2, $definitionQueryMediator);
-        $definitionRepository->setArgument(1, $class);
         $definitionRepository->setArgument(0, $doctrineRegistry);
+        $definitionRepository->setArgument(1, $class);
+        $definitionRepository->setArgument(2, $definitionQueryMediator);
     }
 
     private function wireFactory(ContainerBuilder $container, string $class, string $paramClass): void

@@ -5,22 +5,23 @@ namespace Evrinoma\FcrBundle\Mediator;
 use Doctrine\ORM\QueryBuilder;
 use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\FcrBundle\Dto\FcrApiDtoInterface;
+use Evrinoma\FcrBundle\Repository\AliasInterface;
 use Evrinoma\UtilsBundle\Mediator\AbstractQueryMediator;
 
 class QueryMediator extends AbstractQueryMediator implements QueryMediatorInterface
 {
 //region SECTION: Fields
-    protected static string $alias = MediatorInterface::ALIAS_FCR;
+    protected static string $alias = AliasInterface::FCR;
 //endregion Fields
 
 //region SECTION: Public
     /**
      * @param DtoInterface $dto
-     * @param QueryBuilder              $builder
+     * @param QueryBuilder $builder
      *
      * @return mixed
      */
-    public function createQuery(DtoInterface $dto, QueryBuilder $builder):void
+    public function createQuery(DtoInterface $dto, QueryBuilder $builder): void
     {
         $alias = $this->alias();
 
