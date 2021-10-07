@@ -1,0 +1,20 @@
+Evrinoma\АскBundle\Model\Аск\AbstractАск:
+  exclusion_policy: ALL
+  properties:
+    id:
+      groups: [ api_get_аск, api_post_аск, api_put_аск ]
+      expose: true
+    createdAt:
+      type: DateTimeImmutable<'Y-m-d H:i'>
+      groups: [ api_get_аск, api_post_аск, api_put_аск  ]
+    updatedAt:
+      type: DateTimeImmutable<'Y-m-d H:i'>
+      groups: [ api_get_аск, api_post_аск, api_put_аск ]
+    active:
+      groups: [ api_get_аск, api_post_аск, api_put_аск ]
+      expose: true
+    description:
+      groups: [ api_get_аск, api_post_аск, api_put_аск ]
+      expose: true
+
+

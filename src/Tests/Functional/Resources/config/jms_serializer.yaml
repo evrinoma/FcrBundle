@@ -1,0 +1,6 @@
+jms_serializer:
+  metadata:
+    directories:
+      FcrBundle:
+        namespace_prefix: "Evrinoma\\FcrBundle"
+        path: '%kernel.root_dir%/Resources/config/serializer/FcrBundle'

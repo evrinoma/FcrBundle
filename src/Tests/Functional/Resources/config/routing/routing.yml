@@ -1,0 +1,2 @@
+fcr:
+    resource: "@EvrinomaFcrBundle/Resources/config/routes.yml"

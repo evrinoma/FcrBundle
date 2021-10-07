@@ -2,15 +2,15 @@
 
 namespace Evrinoma\FcrBundle\Model\Fcr;
 
+use Doctrine\ORM\Mapping as ORM;
 use Evrinoma\UtilsBundle\Entity\ActiveTrait;
 use Evrinoma\UtilsBundle\Entity\CreateUpdateAtTrait;
 use Evrinoma\UtilsBundle\Entity\IdTrait;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\MappedSuperclass
  * @ORM\Table(uniqueConstraints={
- *     @ORM\UniqueConstraint(name="idx_sys_id", columns={"sys_id"}),
+ *     @ORM\UniqueConstraint(name="idx_id", columns={"id"}),
  *     @ORM\UniqueConstraint(name="idx_description_id", columns={"description"})
  *     }
  * )
@@ -23,10 +23,10 @@ abstract class AbstractFcr implements FcrInterface
     /**
      * @var int
      *
-     * @ORM\Column(name="sys_id", type="integer")
+     * @ORM\Id
+     * @ORM\Column(name="id", type="integer")
      */
-    protected int $sysId;
-
+    protected $id;
     /**
      * @var string
      *
@@ -37,14 +37,6 @@ abstract class AbstractFcr implements FcrInterface
 
 //region SECTION: Getters/Setters
     /**
-     * @return int
-     */
-    public function getSysId(): int
-    {
-        return $this->sysId;
-    }
-
-    /**
      * @return string
      */
     public function getDescription(): string
@@ -53,13 +45,13 @@ abstract class AbstractFcr implements FcrInterface
     }
 
     /**
-     * @param int $sysId
+     * @param int $id
      *
      * @return FcrInterface
      */
-    public function setSysId(int $sysId): FcrInterface
+    public function setId(int $id): FcrInterface
     {
-        $this->sysId = $sysId;
+        $this->id = $id;
 
         return $this;
     }
