@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^7.4",
+        "evrinoma/dto-bundle": "dev-master",
         "evrinoma/dto-common": "dev-master",
         "evrinoma/utils-bundle": "dev-master"
     },
@@ -50,9 +51,17 @@
         "evrinoma/test-utils-bundle": "dev-master"
     },
     "repositories": {
+        "dto": {
+            "type": "vcs",
+            "url": "https://github.com/evrinoma/DtoBundle.git"
+        },
         "dto-common": {
             "type": "vcs",
             "url": "https://github.com/evrinoma/DtoCommon.git"
+        },
+        "test-utils": {
+            "type": "vcs",
+            "url": "https://github.com/evrinoma/TestUtilsBundle.git"
         },
         "utils": {
             "type": "vcs",
