@@ -1,0 +1,5 @@
+services:
+  evrinoma.fcr.fixtures.fcr:
+    class: Evrinoma\FcrBundle\Fixtures\FcrFixtures
+    tags:
+      - { name: doctrine.fixture.orm }
