@@ -2,6 +2,7 @@
 
 namespace Evrinoma\FcrBundle;
 
+use Evrinoma\FcrBundle\DependencyInjection\Compiler\Constraint\FcrPass;
 use Evrinoma\FcrBundle\DependencyInjection\Compiler\DecoratorPass;
 use Evrinoma\FcrBundle\DependencyInjection\Compiler\MapEntityPass;
 use Evrinoma\FcrBundle\DependencyInjection\EvrinomaFcrExtension;
@@ -19,6 +20,7 @@ class EvrinomaFcrBundle extends Bundle
         $container
             ->addCompilerPass(new MapEntityPass($this->getNamespace(), $this->getPath()))
             ->addCompilerPass(new DecoratorPass())
+            ->addCompilerPass(new FcrPass())
         ;
     }
 //region SECTION: Getters/Setters
