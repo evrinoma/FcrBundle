@@ -3,6 +3,7 @@
 namespace Evrinoma\FcrBundle\DependencyInjection;
 
 
+use Evrinoma\FcrBundle\DependencyInjection\Compiler\Constraint\FcrPass;
 use Evrinoma\FcrBundle\Dto\FcrApiDto;
 use Evrinoma\FcrBundle\EvrinomaFcrBundle;
 use Evrinoma\UtilsBundle\DependencyInjection\HelperTrait;
@@ -39,6 +40,9 @@ class EvrinomaFcrExtension extends Extension
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        if ($container->getParameter('kernel.environment') !== 'prod') {
+            $loader->load('fixtures.yml');
+        }
 
         $configuration = $this->getConfiguration($configs, $container);
         $config        = $this->processConfiguration($configuration, $configs);
@@ -109,9 +113,9 @@ class EvrinomaFcrExtension extends Extension
     {
         foreach ($container->getDefinitions() as $key => $definition) {
             switch (true) {
-//                case strpos($key, FcrPass::FCR_CONSTRAINT) !== false :
-//                    $definition->addTag(FcrPass::FCR_CONSTRAINT);
-//                    break;
+                case strpos($key, FcrPass::FCR_CONSTRAINT) !== false :
+                    $definition->addTag(FcrPass::FCR_CONSTRAINT);
+                    break;
                 default:
             }
         }
