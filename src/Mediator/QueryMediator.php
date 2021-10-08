@@ -26,10 +26,16 @@ class QueryMediator extends AbstractQueryMediator implements QueryMediatorInterf
         $alias = $this->alias();
 
         /** @var $dto FcrApiDtoInterface */
+        if ($dto->hasId()) {
+            $builder
+                ->andWhere($alias.'.id = :id')
+                ->setParameter('id', $dto->getId());
+        }
+
         if ($dto->hasDescription()) {
             $builder
-                ->andWhere($alias.'.description = :description')
-                ->setParameter('description', $dto->getDescription());
+                ->andWhere($alias.'.description like :description')
+                ->setParameter('description', '%'.$dto->getDescription().'%');
         }
 
         if ($dto->hasActive()) {
