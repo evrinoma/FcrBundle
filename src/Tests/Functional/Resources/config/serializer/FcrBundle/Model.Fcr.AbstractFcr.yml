@@ -1,20 +1,20 @@
-Evrinoma\АскBundle\Model\Аск\AbstractАск:
+Evrinoma\FcrBundle\Model\Fcr\AbstractFcr:
   exclusion_policy: ALL
   properties:
     id:
-      groups: [ api_get_аск, api_post_аск, api_put_аск ]
+      groups: [ api_get_fcr, api_post_fcr, api_put_fcr ]
       expose: true
     createdAt:
       type: DateTimeImmutable<'Y-m-d H:i'>
-      groups: [ api_get_аск, api_post_аск, api_put_аск  ]
+      groups: [ api_get_fcr, api_post_fcr, api_put_fcr  ]
     updatedAt:
       type: DateTimeImmutable<'Y-m-d H:i'>
-      groups: [ api_get_аск, api_post_аск, api_put_аск ]
+      groups: [ api_get_fcr, api_post_fcr, api_put_fcr ]
     active:
-      groups: [ api_get_аск, api_post_аск, api_put_аск ]
+      groups: [ api_get_fcr, api_post_fcr, api_put_fcr ]
       expose: true
     description:
-      groups: [ api_get_аск, api_post_аск, api_put_аск ]
+      groups: [ api_get_fcr, api_post_fcr, api_put_fcr ]
       expose: true
 
 
