@@ -85,6 +85,8 @@ final class CommandManager implements CommandManagerInterface, RestInterface
         }
 
         $fcr
+            ->setDescription($dto->getDescription())
+            ->setId($dto->getId())
             ->setUpdatedAt(new \DateTimeImmutable())
             ->setActive($dto->getActive());
 
