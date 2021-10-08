@@ -8,6 +8,5 @@ interface ModelInterface
     public const ID          = 'id';
     public const ACTIVE      = 'active';
     public const DESCRIPTION = 'description';
-
 //endregion Fields
 }

@@ -45,11 +45,11 @@ abstract class AbstractFcr implements FcrInterface
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      *
      * @return FcrInterface
      */
-    public function setId(int $id): FcrInterface
+    public function setId(?int $id): FcrInterface
     {
         $this->id = $id;
 
