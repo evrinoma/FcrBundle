@@ -29,6 +29,8 @@ class FcrFactory implements FcrFactoryInterface
         $fcr = new self::$entityClass;
 
         $fcr
+            ->setDescription($dto->getDescription())
+            ->setId($dto->getId())
             ->setCreatedAt(new \DateTimeImmutable())
             ->setActiveToActive();
 
