@@ -63,12 +63,12 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      *             @OA\Schema(
      *               example={
      *                  "class":"Evrinoma\FcrBundle\Dto\FcrApiDto",
-     *                  "sys_id":"48",
+     *                  "id":"48",
      *                  "description":"Интертех",
      *                  },
      *               type="object",
      *               @OA\Property(property="class",type="string",default="Evrinoma\FcrBundle\Dto\FcrApiDto"),
-     *               @OA\Property(property="sys_id",type="string"),
+     *               @OA\Property(property="id",type="string"),
      *               @OA\Property(property="description",type="string"),
      *            )
      *         )
@@ -112,15 +112,13 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      *             @OA\Schema(
      *               example={
      *                  "class":"Evrinoma\FcrBundle\Dto\FcrApiDto",
-     *                  "id":"3",
      *                  "active": "b",
-     *                  "sys_id":"48",
+     *                  "id":"48",
      *                  "description":"Интертех",
      *                  },
      *               type="object",
      *               @OA\Property(property="class",type="string",default="Evrinoma\FcrBundle\Dto\FcrApiDto"),
      *               @OA\Property(property="id",type="string"),
-     *               @OA\Property(property="sys_id",type="string"),
      *               @OA\Property(property="description",type="string"),
      *               @OA\Property(property="active",type="string")
      *            )
@@ -235,14 +233,6 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      *         description="id Entity",
      *         in="query",
      *         name="id",
-     *         @OA\Schema(
-     *           type="string",
-     *         )
-     *     ),
-     *      @OA\Parameter(
-     *         description="sys id",
-     *         in="query",
-     *         name="sys_id",
      *         @OA\Schema(
      *           type="string",
      *         )
