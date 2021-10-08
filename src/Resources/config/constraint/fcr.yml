@@ -1,0 +1,6 @@
+services:
+  evrinoma.fcr.constraint.id:
+    class: Evrinoma\FcrBundle\Constraint\Id
+
+  evrinoma.fcr.constraint.description:
+    class: Evrinoma\FcrBundle\Constraint\Description
