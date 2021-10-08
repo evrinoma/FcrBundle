@@ -18,6 +18,7 @@ final class FcrFixtures extends Fixture implements FixtureGroupInterface, Ordere
         ['id' => 1001, 'description' => 'kzkt2', 'active' => 'd', 'created_at' => '2015-10-23 10:21:50'],
         ['id' => 49, 'description' => 'nvr', 'active' => 'b', 'created_at' => '2010-10-23 10:21:50'],
         ['id' => 50, 'description' => 'nvr2', 'active' => 'd', 'created_at' => '2010-10-23 10:21:50'],
+        ['id' => 51, 'description' => 'nvr3', 'active' => 'd', 'created_at' => '2011-10-23 10:21:50'],
     ];
 //endregion Fields
 
