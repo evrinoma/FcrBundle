@@ -1,2 +1,60 @@
 #Configuration
 
+преопределение штатного класса сущности
+
+    contractor:
+        db_driver: orm модель данных
+        factory: App\Fcr\Factory\FcrFactory фабрика для создания объектов,
+                 не достающие значения можно разрешить на уровне Mediator или переопределив фабрику
+        entity: App\Fcr\Entity\Fcr сущность
+        dto_class: App\Fcr\Dto\FcrDto класс dto с которым работает сущность
+
+#CQRS model
+
+Actions в контроллере разбиты на две группы
+создание, редактирование, удаление данных
+
+        1. putAction(PUT), postAction(POST), deleteAction(DELETE)
+получение данных
+
+        2. getAction(GET), criteriaAction(GET)
+
+каждый метод работает со своим менеджером
+
+        1. CommandManagerInterface
+        2. QueryManagerInterface
+
+При переопределении штатного класса сущности, дополнение данными осуществляется декорированием, с помощью MediatorInterface
+
+
+группы  сериализации
+
+    1. api_get_fcr - получение контрагентов
+    2. api_post_fcr - создание контрагента
+    3. api_put_fcr -  редактирование контрагента
+
+#Статусы:
+
+    создание:
+        контрагент создан HTTP_CREATED 201
+    обновление:
+        контрагент обновление HTTP_OK 200
+    удаление:
+        контрагент удален HTTP_ACCEPTED 202
+    получение:
+        контрагент(ы) найдены HTTP_OK 200
+    ошибки:
+        если контрагент не найден FcrNotFoundException возвращает HTTP_NOT_FOUND 404
+        если контрагент не уникален UniqueConstraintViolationException возвращает HTTP_CONFLICT 409
+        если контрагент не прошел валидацию FcrInvalidException возвращает HTTP_UNPROCESSABLE_ENTITY 422
+        если контрагент не может быть сохранен FcrCannotBeSavedException возвращает HTTP_NOT_IMPLEMENTED 501
+        все остальные ошибки возвращаются как HTTP_BAD_REQUEST 400
+
+
+#Тесты:
+
+    composer install --dev
+    /usr/bin/php vendor/phpunit/phpunit/phpunit --bootstrap src/Tests/bootstrap.php --configuration phpunit.xml.dist src/Tests --teamcity
+
+
+
