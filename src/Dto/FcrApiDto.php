@@ -17,38 +17,26 @@ class FcrApiDto extends AbstractDto implements FcrApiDtoInterface
 //region SECTION: Private
     /**
      * @param string $id
-     *
-     * @return FcrApiDto
      */
-    private function setId(string $id): FcrApiDto
+    private function setId(string $id): void
     {
         $this->id = $id;
-
-        return $this;
     }
 
     /**
      * @param string $description
-     *
-     * @return FcrApiDto
      */
-    private function setDescription(string $description): FcrApiDto
+    private function setDescription(string $description): void
     {
         $this->description = $description;
-
-        return $this;
     }
 
     /**
      * @param string $active
-     *
-     * @return FcrApiDto
      */
-    private function setActive(string $active): FcrApiDto
+    private function setActive(string $active): void
     {
         $this->active = $active;
-
-        return $this;
     }
 //endregion Private
 
