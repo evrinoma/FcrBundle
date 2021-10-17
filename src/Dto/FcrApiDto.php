@@ -18,7 +18,7 @@ class FcrApiDto extends AbstractDto implements FcrApiDtoInterface
     /**
      * @param string $id
      */
-    private function setId(string $id): void
+    protected function setId(string $id): void
     {
         $this->id = $id;
     }
@@ -26,7 +26,7 @@ class FcrApiDto extends AbstractDto implements FcrApiDtoInterface
     /**
      * @param string $description
      */
-    private function setDescription(string $description): void
+    protected function setDescription(string $description): void
     {
         $this->description = $description;
     }
@@ -34,7 +34,7 @@ class FcrApiDto extends AbstractDto implements FcrApiDtoInterface
     /**
      * @param string $active
      */
-    private function setActive(string $active): void
+    protected function setActive(string $active): void
     {
         $this->active = $active;
     }
