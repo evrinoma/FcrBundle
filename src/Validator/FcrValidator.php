@@ -20,7 +20,7 @@ final class FcrValidator extends AbstractValidator
     /**
      * ContractorValidator constructor.
      */
-    public function __construct()
+    public function __construct(string $entityClass)
     {
         parent::__construct(self::$entityClass);
     }
