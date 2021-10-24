@@ -16,9 +16,9 @@ class FcrApiDto extends AbstractDto implements FcrApiDtoInterface
 
 //region SECTION: Private
     /**
-     * @param string $id
+     * @param int $id
      */
-    protected function setId(string $id): void
+    protected function setId(int $id): void
     {
         $this->id = $id;
     }
