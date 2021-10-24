@@ -11,7 +11,7 @@ use Evrinoma\UtilsBundle\Entity\IdTrait;
  * @ORM\MappedSuperclass
  * @ORM\Table(uniqueConstraints={
  *     @ORM\UniqueConstraint(name="idx_id", columns={"id"}),
- *     @ORM\UniqueConstraint(name="idx_description_id", columns={"description"})
+ *     @ORM\UniqueConstraint(name="idx_description", columns={"description"})
  *     }
  * )
  */
