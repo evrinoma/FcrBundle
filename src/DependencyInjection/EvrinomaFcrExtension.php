@@ -77,7 +77,7 @@ class EvrinomaFcrExtension extends Extension
         );
 
         if ($doctrineRegistry) {
-            $this->wineRepository($container, $doctrineRegistry, $config['entity']);
+            $this->wireRepository($container, $doctrineRegistry, $config['entity']);
         }
 
         $this->wireController($container, $config['dto']);
@@ -121,7 +121,7 @@ class EvrinomaFcrExtension extends Extension
         }
     }
 
-    private function wineRepository(ContainerBuilder $container, Reference $doctrineRegistry, string $class): void
+    private function wireRepository(ContainerBuilder $container, Reference $doctrineRegistry, string $class): void
     {
         $definitionRepository    = $container->getDefinition('evrinoma.'.$this->getAlias().'.repository');
         $definitionQueryMediator = $container->getDefinition('evrinoma.'.$this->getAlias().'.query.mediator');
