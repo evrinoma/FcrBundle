@@ -29,25 +29,25 @@ Actions в контроллере разбиты на две группы
 
 группы  сериализации
 
-    1. api_get_fcr - получение контрагентов
-    2. api_post_fcr - создание контрагента
-    3. api_put_fcr -  редактирование контрагента
+    1. api_get_fcr - получение цфо
+    2. api_post_fcr - создание цфо
+    3. api_put_fcr -  редактирование цфо
 
 #Статусы:
 
     создание:
-        контрагент создан HTTP_CREATED 201
+        цфо создан HTTP_CREATED 201
     обновление:
-        контрагент обновление HTTP_OK 200
+        цфо обновление HTTP_OK 200
     удаление:
-        контрагент удален HTTP_ACCEPTED 202
+        цфо удален HTTP_ACCEPTED 202
     получение:
-        контрагент(ы) найдены HTTP_OK 200
+        цфо(ы) найдены HTTP_OK 200
     ошибки:
-        если контрагент не найден FcrNotFoundException возвращает HTTP_NOT_FOUND 404
-        если контрагент не уникален UniqueConstraintViolationException возвращает HTTP_CONFLICT 409
-        если контрагент не прошел валидацию FcrInvalidException возвращает HTTP_UNPROCESSABLE_ENTITY 422
-        если контрагент не может быть сохранен FcrCannotBeSavedException возвращает HTTP_NOT_IMPLEMENTED 501
+        если цфо не найден FcrNotFoundException возвращает HTTP_NOT_FOUND 404
+        если цфо не уникален UniqueConstraintViolationException возвращает HTTP_CONFLICT 409
+        если цфо не прошел валидацию FcrInvalidException возвращает HTTP_UNPROCESSABLE_ENTITY 422
+        если цфо не может быть сохранен FcrCannotBeSavedException возвращает HTTP_NOT_IMPLEMENTED 501
         все остальные ошибки возвращаются как HTTP_BAD_REQUEST 400
 
 
