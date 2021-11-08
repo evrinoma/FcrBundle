@@ -30,7 +30,7 @@ class ApiControllerTest extends CaseTest implements ApiControllerTestInterface, 
     use ApiBrowserTestTrait, ApiHelperTestTrait;
 
 //region SECTION: Protected
-    protected function getFixtures(): array
+    public static function getFixtures(): array
     {
         return [FixtureInterface::FCR_FIXTURES];
     }
@@ -106,7 +106,7 @@ class ApiControllerTest extends CaseTest implements ApiControllerTestInterface, 
     {
         $find = $this->assertGet(48);
 
-        $updated = $this->put($this->getDefault(['id' => 48, 'description' => 'ITE_48']));
+        $updated = $this->put(static::getDefault(['id' => 48, 'description' => 'ITE_48']));
         $this->assertEquals(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
 
         $this->assertEquals($find['data']['id'], $updated['data']['id']);
@@ -141,20 +141,20 @@ class ApiControllerTest extends CaseTest implements ApiControllerTestInterface, 
 
     public function testPutNotFound(): void
     {
-        $this->put($this->getDefault(["id" => 100, "description" => "rcf",]));
+        $this->put(static::getDefault(["id" => 100, "description" => "rcf",]));
         $this->assertEquals(Response::HTTP_NOT_FOUND, $this->client->getResponse()->getStatusCode());
     }
 
     public function testPutUnprocessable(): void
     {
-        $query = $this->getDefault(['id' => '']);
+        $query = static::getDefault(['id' => '']);
 
         $this->put($query);
         $this->assertEquals(Response::HTTP_UNPROCESSABLE_ENTITY, $this->client->getResponse()->getStatusCode());
 
         $this->createFcr();
 
-        $query = $this->getDefault(['description' => '']);
+        $query = static::getDefault(['description' => '']);
 
         $this->put($query);
         $this->assertEquals(Response::HTTP_UNPROCESSABLE_ENTITY, $this->client->getResponse()->getStatusCode());
@@ -201,35 +201,35 @@ class ApiControllerTest extends CaseTest implements ApiControllerTestInterface, 
 
     private function createFcr(): array
     {
-        $query = $this->getDefault();
+        $query = static::getDefault();
 
         return $this->post($query);
     }
 
     private function createFcrDuplicateId(): array
     {
-        $query = $this->getDefault(['id' => '48']);
+        $query = static::getDefault(['id' => '48']);
 
         return $this->post($query);
     }
 
     private function createFcrDuplicateDescription(): array
     {
-        $query = $this->getDefault(['description' => 'kzkt']);
+        $query = static::getDefault(['description' => 'kzkt']);
 
         return $this->post($query);
     }
 
     private function createConstraintBlankId(): array
     {
-        $query = $this->getDefault(['id' => '']);
+        $query = static::getDefault(['id' => '']);
 
         return $this->post($query);
     }
 
     private function createConstraintBlankDescription(): array
     {
-        $query = $this->getDefault(['description' => '']);
+        $query = static::getDefault(['description' => '']);
 
         return $this->post($query);
     }
