@@ -5,19 +5,19 @@ namespace Evrinoma\FcrBundle\Tests\Functional\Controller;
 
 use Evrinoma\FcrBundle\Dto\FcrApiDto;
 use Evrinoma\FcrBundle\Fixtures\FixtureInterface;
-use Evrinoma\FcrBundle\Tests\Functional\CaseTest;
 use Evrinoma\TestUtilsBundle\Browser\ApiBrowserTestInterface;
 use Evrinoma\TestUtilsBundle\Browser\ApiBrowserTestTrait;
 use Evrinoma\TestUtilsBundle\Controller\ApiControllerTestInterface;
 use Evrinoma\TestUtilsBundle\Helper\ApiMethodTestInterface;
 use Evrinoma\TestUtilsBundle\Helper\ApiMethodTestTrait;
 use Evrinoma\TestUtilsBundle\Helper\ResponseStatusTestTrait;
+use Evrinoma\TestUtilsBundle\Web\AbstractWebCaseTest;
 use Evrinoma\UtilsBundle\Model\ActiveModel;
 
 /**
  * @group functional
  */
-class ApiControllerTest extends CaseTest implements ApiControllerTestInterface, ApiBrowserTestInterface, ApiMethodTestInterface
+class ApiControllerTest extends AbstractWebCaseTest implements ApiControllerTestInterface, ApiBrowserTestInterface, ApiMethodTestInterface
 {
 //region SECTION: Fields
     public const API_GET      = 'evrinoma/api/fcr';
