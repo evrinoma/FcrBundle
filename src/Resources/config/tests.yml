@@ -1,0 +1,2 @@
+imports:
+  - { resource: tests/fcr.yml }

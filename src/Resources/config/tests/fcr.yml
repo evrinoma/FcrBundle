@@ -1,0 +1,9 @@
+services:
+  evrinoma.fcr.test.functional.action.fcr:
+    class: Evrinoma\FcrBundle\Tests\Functional\Action\BaseFcr
+    public: true
+    arguments:
+
+  Evrinoma\FcrBundle\Tests\Functional\Action\BaseFcr:
+    alias: evrinoma.fcr.test.functional.action.fcr
+    public: true
