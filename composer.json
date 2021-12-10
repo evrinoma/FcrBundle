@@ -26,7 +26,8 @@
             "Evrinoma\\FcrBundle\\": "src/"
         },
         "exclude-from-classmap": [
-            "/Tests/"
+            "/Tests/",
+            "!/Tests/Functional/Action"
         ]
     },
     "minimum-stability": "dev",
