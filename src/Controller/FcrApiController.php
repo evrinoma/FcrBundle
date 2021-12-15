@@ -53,7 +53,7 @@ final class FcrApiController extends AbstractApiController implements ApiControl
     }
 
     /**
-     * @Rest\Post("/api/fcr/create", options={"expose"=true}, name="api_create_fcr")
+     * @Rest\Post("/api/fcr/create", options={"expose"=true}, name="api_fcr_create")
      * @OA\Post(
      *     tags={"fcr"},
      *     description="the method perform create fcr",
@@ -102,7 +102,7 @@ final class FcrApiController extends AbstractApiController implements ApiControl
     }
 
     /**
-     * @Rest\Put("/api/fcr/save", options={"expose"=true}, name="api_save_fcr")
+     * @Rest\Put("/api/fcr/save", options={"expose"=true}, name="api_fcr_save")
      * @OA\Put(
      *     tags={"fcr"},
      *     description="the method perform save fcr for current entity",
@@ -156,7 +156,7 @@ final class FcrApiController extends AbstractApiController implements ApiControl
     }
 
     /**
-     * @Rest\Delete("/api/fcr/delete", options={"expose"=true}, name="api_delete_fcr")
+     * @Rest\Delete("/api/fcr/delete", options={"expose"=true}, name="api_fcr_delete")
      * @OA\Delete(
      *     tags={"fcr"},
      *     @OA\Parameter(
