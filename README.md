@@ -1,4 +1,4 @@
-#Configuration
+# Configuration
 
 преопределение штатного класса сущности
 
@@ -9,7 +9,7 @@
         entity: App\Fcr\Entity\Fcr сущность
         dto_class: App\Fcr\Dto\FcrDto класс dto с которым работает сущность
 
-#CQRS model
+# CQRS model
 
 Actions в контроллере разбиты на две группы
 создание, редактирование, удаление данных
@@ -33,7 +33,7 @@ Actions в контроллере разбиты на две группы
     2. api_post_fcr - создание цфо
     3. api_put_fcr -  редактирование цфо
 
-#Статусы:
+# Статусы:
 
     создание:
         цфо создан HTTP_CREATED 201
@@ -51,10 +51,12 @@ Actions в контроллере разбиты на две группы
         все остальные ошибки возвращаются как HTTP_BAD_REQUEST 400
 
 
-#Тесты:
+# Тесты:
 
     composer install --dev
+### run all tests
     /usr/bin/php vendor/phpunit/phpunit/phpunit --bootstrap src/Tests/bootstrap.php --configuration phpunit.xml.dist src/Tests --teamcity
 
-
+### run personal test for example testPost
+    /usr/bin/php vendor/phpunit/phpunit/phpunit --bootstrap src/Tests/bootstrap.php --configuration phpunit.xml.dist src/Tests/Functional/Controller/TypeApiControllerTest.php --filter "/::testPost( .*)?$/" 
 
