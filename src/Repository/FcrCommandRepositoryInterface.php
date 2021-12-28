@@ -9,18 +9,18 @@ use Evrinoma\FcrBundle\Model\Fcr\FcrInterface;
 interface FcrCommandRepositoryInterface
 {
     /**
-     * @param FcrInterface $owner
+     * @param FcrInterface $fcr
      *
      * @return bool
      * @throws FcrCannotBeSavedException
      */
-    public function save(FcrInterface $owner): bool;
+    public function save(FcrInterface $fcr): bool;
 
     /**
-     * @param FcrInterface $owner
+     * @param FcrInterface $fcr
      *
      * @return bool
      * @throws FcrCannotBeRemovedException
      */
-    public function remove(FcrInterface $owner): bool;
+    public function remove(FcrInterface $fcr): bool;
 }
