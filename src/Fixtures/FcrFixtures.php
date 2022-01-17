@@ -30,15 +30,14 @@ final class FcrFixtures extends Fixture implements FixtureGroupInterface, Ordere
      */
     public function load(ObjectManager $manager)
     {
-        $this->createFcr($manager);
+        $this->create($manager);
 
         $manager->flush();
     }
 //endregion Public
-//endregion Public
 
 //region SECTION: Private
-    private function createFcr(ObjectManager $manager)
+    private function create(ObjectManager $manager)
     {
         $short = (new \ReflectionClass(BaseFcr::class))->getShortName()."_";
         $i     = 0;
