@@ -19,7 +19,7 @@ trait FcrApiDtoTrait
      */
     public function setId(?int $id): void
     {
-        parent::setActive($id);
+        parent::setId($id);
     }
 
     /**
