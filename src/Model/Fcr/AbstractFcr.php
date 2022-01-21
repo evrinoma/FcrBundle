@@ -5,6 +5,7 @@ namespace Evrinoma\FcrBundle\Model\Fcr;
 use Doctrine\ORM\Mapping as ORM;
 use Evrinoma\UtilsBundle\Entity\ActiveTrait;
 use Evrinoma\UtilsBundle\Entity\CreateUpdateAtTrait;
+use Evrinoma\UtilsBundle\Entity\DescriptionTrait;
 use Evrinoma\UtilsBundle\Entity\IdTrait;
 
 /**
@@ -17,7 +18,7 @@ use Evrinoma\UtilsBundle\Entity\IdTrait;
  */
 abstract class AbstractFcr implements FcrInterface
 {
-    use IdTrait, CreateUpdateAtTrait, ActiveTrait;
+    use IdTrait, CreateUpdateAtTrait, ActiveTrait, DescriptionTrait;
 
 //region SECTION: Fields
     /**
@@ -37,14 +38,6 @@ abstract class AbstractFcr implements FcrInterface
 
 //region SECTION: Getters/Setters
     /**
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    /**
      * @param int|null $id
      *
      * @return FcrInterface
@@ -52,18 +45,6 @@ abstract class AbstractFcr implements FcrInterface
     public function setId(?int $id): FcrInterface
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    /**
-     * @param string $description
-     *
-     * @return FcrInterface
-     */
-    public function setDescription(string $description): FcrInterface
-    {
-        $this->description = $description;
 
         return $this;
     }
