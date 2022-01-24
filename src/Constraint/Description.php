@@ -3,7 +3,7 @@
 
 namespace Evrinoma\FcrBundle\Constraint;
 
-use Evrinoma\UtilsBundle\Constraint\ConstraintInterface;
+use Evrinoma\UtilsBundle\Constraint\Property\ConstraintInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 
