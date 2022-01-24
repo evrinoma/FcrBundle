@@ -3,7 +3,7 @@
 namespace Evrinoma\FcrBundle\DependencyInjection;
 
 
-use Evrinoma\FcrBundle\DependencyInjection\Compiler\Constraint\FcrPass;
+use Evrinoma\FcrBundle\DependencyInjection\Compiler\Constraint\Property\FcrPass;
 use Evrinoma\FcrBundle\Dto\FcrApiDto;
 use Evrinoma\FcrBundle\EvrinomaFcrBundle;
 use Evrinoma\UtilsBundle\DependencyInjection\HelperTrait;

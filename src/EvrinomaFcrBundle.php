@@ -2,7 +2,7 @@
 
 namespace Evrinoma\FcrBundle;
 
-use Evrinoma\FcrBundle\DependencyInjection\Compiler\Constraint\FcrPass;
+use Evrinoma\FcrBundle\DependencyInjection\Compiler\Constraint\Property\FcrPass;
 use Evrinoma\FcrBundle\DependencyInjection\Compiler\DecoratorPass;
 use Evrinoma\FcrBundle\DependencyInjection\Compiler\MapEntityPass;
 use Evrinoma\FcrBundle\DependencyInjection\EvrinomaFcrExtension;
