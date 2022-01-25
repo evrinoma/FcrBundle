@@ -89,10 +89,8 @@ class EvrinomaFcrExtension extends Extension
 
         $this->wireValidator($container, $config['entity']);
 
-        $loader->load('validation.yml');
-
         if ($config['constraints']) {
-            $loader->load('constraint/fcr.yml');
+            $loader->load('validation.yml');
         }
 
         $this->wireConstraintTag($container);
@@ -154,7 +152,8 @@ class EvrinomaFcrExtension extends Extension
     private function wireValidator(ContainerBuilder $container, string $class): void
     {
         $definitionApiController = $container->getDefinition('evrinoma.'.$this->getAlias().'.validator');
-        $definitionApiController->setArgument(0, $class);
+        $definitionApiController->setArgument(0, new Reference('validator'));
+        $definitionApiController->setArgument(1, $class);
     }
 //endregion Private
 
