@@ -4,3 +4,6 @@ services:
 
   evrinoma.fcr.constraint.property.description:
     class: Evrinoma\FcrBundle\Constraint\Property\Description
+
+  evrinoma.fcr.constraint.property.active:
+    class: Evrinoma\FcrBundle\Constraint\Property\Active
