@@ -28,7 +28,7 @@ class MapEntityPass extends AbstractMapEntity implements CompilerPassInterface
         $entityFcr = $container->getParameter('evrinoma.fcr.entity');
         if ((strpos($entityFcr, EvrinomaFcrExtension::ENTITY) !== false)) {
             $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/Fcr', '%s/Entity/Fcr');
-            $this->addResolveTargetEntity([BaseFcr::class => FcrInterface::class,], false);
+            $this->addResolveTargetEntity([BaseFcr::class => [FcrInterface::class => [],],], false);
         }
     }
 
