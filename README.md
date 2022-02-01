@@ -50,13 +50,23 @@ Actions в контроллере разбиты на две группы
         если цфо не может быть сохранен FcrCannotBeSavedException возвращает HTTP_NOT_IMPLEMENTED 501
         все остальные ошибки возвращаются как HTTP_BAD_REQUEST 400
 
+# Constraint
+
+Для добавления проверки поля сушности fcr нужно описать логику проверки реализующую интерфейс Evrinoma\UtilsBundle\Constraint\Property\ConstraintInterface и зарегестрировать сервис с этикеткой evrinoma.fcr.constraint.property
+
+    evrinoma.fcr.constraint.property.custom:
+        class: App\Fcr\Constraint\Property\Custom
+        tags: [ 'evrinoma.fcr.constraint.property' ]
 
 # Тесты:
 
     composer install --dev
+
 ### run all tests
+
     /usr/bin/php vendor/phpunit/phpunit/phpunit --bootstrap src/Tests/bootstrap.php --configuration phpunit.xml.dist src/Tests --teamcity
 
 ### run personal test for example testPost
+
     /usr/bin/php vendor/phpunit/phpunit/phpunit --bootstrap src/Tests/bootstrap.php --configuration phpunit.xml.dist src/Tests/Functional/Controller/TypeApiControllerTest.php --filter "/::testPost( .*)?$/" 
 
