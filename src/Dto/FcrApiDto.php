@@ -4,40 +4,14 @@ namespace Evrinoma\FcrBundle\Dto;
 
 use Evrinoma\DtoBundle\Dto\AbstractDto;
 use Evrinoma\DtoBundle\Dto\DtoInterface;
-use Evrinoma\DtoCommon\ValueObject\ActiveTrait;
-use Evrinoma\DtoCommon\ValueObject\DescriptionTrait;
-use Evrinoma\DtoCommon\ValueObject\IdTrait;
+use Evrinoma\DtoCommon\ValueObject\Mutable\ActiveTrait;
+use Evrinoma\DtoCommon\ValueObject\Mutable\DescriptionTrait;
+use Evrinoma\DtoCommon\ValueObject\Mutable\IdTrait;
 use Symfony\Component\HttpFoundation\Request;
 
 class FcrApiDto extends AbstractDto implements FcrApiDtoInterface
 {
     use IdTrait, DescriptionTrait, ActiveTrait;
-
-//region SECTION: Private
-    /**
-     * @param int $id
-     */
-    protected function setId(int $id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @param string $description
-     */
-    protected function setDescription(string $description): void
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @param string $active
-     */
-    protected function setActive(string $active): void
-    {
-        $this->active = $active;
-    }
-//endregion Private
 
 //region SECTION: Dto
     public function toDto(Request $request): DtoInterface

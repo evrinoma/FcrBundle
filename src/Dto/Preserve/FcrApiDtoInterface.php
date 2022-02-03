@@ -4,22 +4,10 @@
 namespace Evrinoma\FcrBundle\Dto\Preserve;
 
 
-interface FcrApiDtoInterface
+use Evrinoma\DtoCommon\ValueObject\Mutable\ActiveInterface;
+use Evrinoma\DtoCommon\ValueObject\Mutable\DescriptionInterface;
+use Evrinoma\DtoCommon\ValueObject\Mutable\IdInterface;
+
+interface FcrApiDtoInterface extends IdInterface, ActiveInterface, DescriptionInterface
 {
-//region SECTION: Getters/Setters
-    /**
-     * @param string $active
-     */
-    public function setActive(string $active): void;
-
-    /**
-     * @param int|null $id
-     */
-    public function setId(?int $id): void;
-
-    /**
-     * @param string $description
-     */
-    public function setDescription(string $description): void;
-//endregion Getters/Setters
 }
