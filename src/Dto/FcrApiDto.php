@@ -7,7 +7,6 @@ use Evrinoma\DtoBundle\Dto\DtoInterface;
 use Evrinoma\DtoCommon\ValueObject\ActiveTrait;
 use Evrinoma\DtoCommon\ValueObject\DescriptionTrait;
 use Evrinoma\DtoCommon\ValueObject\IdTrait;
-use Evrinoma\FcrBundle\Model\ModelInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class FcrApiDto extends AbstractDto implements FcrApiDtoInterface
@@ -46,9 +45,9 @@ class FcrApiDto extends AbstractDto implements FcrApiDtoInterface
         $class = $request->get(DtoInterface::DTO_CLASS);
 
         if ($class === $this->getClass()) {
-            $active      = $request->get(ModelInterface::ACTIVE);
-            $id          = $request->get(ModelInterface::ID);
-            $description = $request->get(ModelInterface::DESCRIPTION);
+            $active      = $request->get(FcrApiDtoInterface::ACTIVE);
+            $id          = $request->get(FcrApiDtoInterface::ID);
+            $description = $request->get(FcrApiDtoInterface::DESCRIPTION);
 
             if ($active) {
                 $this->setActive($active);
