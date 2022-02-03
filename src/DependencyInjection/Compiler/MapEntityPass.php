@@ -3,7 +3,6 @@
 namespace Evrinoma\FcrBundle\DependencyInjection\Compiler;
 
 use Evrinoma\FcrBundle\DependencyInjection\EvrinomaFcrExtension;
-use Evrinoma\FcrBundle\Entity\Fcr\BaseFcr;
 use Evrinoma\FcrBundle\Model\Fcr\FcrInterface;
 use Evrinoma\UtilsBundle\DependencyInjection\Compiler\AbstractMapEntity;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -28,8 +27,8 @@ class MapEntityPass extends AbstractMapEntity implements CompilerPassInterface
         $entityFcr = $container->getParameter('evrinoma.fcr.entity');
         if ((strpos($entityFcr, EvrinomaFcrExtension::ENTITY) !== false)) {
             $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/Fcr', '%s/Entity/Fcr');
-            $this->addResolveTargetEntity([BaseFcr::class => [FcrInterface::class => [],],], false);
         }
+        $this->addResolveTargetEntity([$entityFcr => [FcrInterface::class => [],],], false);
     }
 
 
