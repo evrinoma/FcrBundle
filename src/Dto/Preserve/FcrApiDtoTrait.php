@@ -8,26 +8,32 @@ trait FcrApiDtoTrait
 //region SECTION: Getters/Setters
     /**
      * @param string $active
+     *
+     * @return self
      */
-    public function setActive(string $active): void
+    public function setActive(string $active): self
     {
-        parent::setActive($active);
+        return parent::setActive($active);
     }
 
     /**
      * @param int|null $id
+     *
+     * @return self
      */
-    public function setId(?int $id): void
+    public function setId(?int $id): self
     {
-        parent::setId($id);
+        return parent::setId($id);
     }
 
     /**
      * @param string $description
+     *
+     * @return self
      */
-    public function setDescription(string $description): void
+    public function setDescription(string $description): self
     {
-        parent::setDescription($description);
+        return parent::setDescription($description);
     }
 
 //endregion Getters/Setters
