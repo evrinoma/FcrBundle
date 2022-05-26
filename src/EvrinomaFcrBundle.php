@@ -33,6 +33,4 @@ class EvrinomaFcrBundle extends Bundle
         return $this->extension;
     }
 //endregion Getters/Setters
-
-
 }
