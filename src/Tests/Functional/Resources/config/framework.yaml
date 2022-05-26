@@ -2,4 +2,4 @@
 framework:
     router:
         resource: '%kernel.root_dir%/Resources/config/routing/routing.yml'
-
+    validation: true
