@@ -4,26 +4,27 @@ namespace Evrinoma\FcrBundle\Controller;
 
 
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use Evrinoma\DtoBundle\Factory\FactoryDtoInterface;
 use Evrinoma\FcrBundle\Dto\FcrApiDtoInterface;
 use Evrinoma\FcrBundle\Exception\FcrCannotBeSavedException;
 use Evrinoma\FcrBundle\Exception\FcrInvalidException;
 use Evrinoma\FcrBundle\Exception\FcrNotFoundException;
 use Evrinoma\FcrBundle\Manager\CommandManagerInterface;
 use Evrinoma\FcrBundle\Manager\QueryManagerInterface;
-use Evrinoma\DtoBundle\Factory\FactoryDtoInterface;
+use Evrinoma\FcrBundle\PreValidator\DtoPreValidator;
 use Evrinoma\UtilsBundle\Controller\AbstractApiController;
 use Evrinoma\UtilsBundle\Controller\ApiControllerInterface;
 use Evrinoma\UtilsBundle\Rest\RestInterface;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use JMS\Serializer\SerializerInterface;
+use OpenApi\Annotations as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use FOS\RestBundle\Controller\Annotations as Rest;
-use OpenApi\Annotations as OA;
-use Nelmio\ApiDocBundle\Annotation\Model;
 
 final class FcrApiController extends AbstractApiController implements ApiControllerInterface
 {
+//region SECTION: Fields
     private string $dtoClass;
     /**
      * @var ?Request
@@ -41,8 +42,14 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      * @var FactoryDtoInterface
      */
     private FactoryDtoInterface $factoryDto;
+    /**
+     * @var DtoPreValidator
+     */
+    private DtoPreValidator $preValidator;
+//endregion Fields
 
-    public function __construct(SerializerInterface $serializer, RequestStack $requestStack, FactoryDtoInterface $factoryDto, CommandManagerInterface $commandManager, QueryManagerInterface $queryManager, string $dtoClass)
+//region SECTION: Constructor
+    public function __construct(SerializerInterface $serializer, RequestStack $requestStack, FactoryDtoInterface $factoryDto, CommandManagerInterface $commandManager, QueryManagerInterface $queryManager, DtoPreValidator $preValidator, string $dtoClass)
     {
         parent::__construct($serializer);
         $this->request        = $requestStack->getCurrentRequest();
@@ -50,8 +57,11 @@ final class FcrApiController extends AbstractApiController implements ApiControl
         $this->commandManager = $commandManager;
         $this->queryManager   = $queryManager;
         $this->dtoClass       = $dtoClass;
+        $this->preValidator   = $preValidator;
     }
+//endregion Constructor
 
+//region SECTION: Public
     /**
      * @Rest\Post("/api/fcr/create", options={"expose"=true}, name="api_fcr_create")
      * @OA\Post(
@@ -81,11 +91,13 @@ final class FcrApiController extends AbstractApiController implements ApiControl
     public function postAction(): JsonResponse
     {
         /** @var FcrApiDtoInterface $fcrApiDto */
-        $fcrApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        $fcrApiDto      = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
         $commandManager = $this->commandManager;
 
         $this->commandManager->setRestCreated();
         try {
+            $this->preValidator->onPost($fcrApiDto);
+
             $json = [];
             $em   = $this->getDoctrine()->getManager();
 
@@ -132,22 +144,20 @@ final class FcrApiController extends AbstractApiController implements ApiControl
     public function putAction(): JsonResponse
     {
         /** @var FcrApiDtoInterface $fcrApiDto */
-        $fcrApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        $fcrApiDto      = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
         $commandManager = $this->commandManager;
 
         try {
-            if ($fcrApiDto->hasId()) {
-                $json = [];
-                $em   = $this->getDoctrine()->getManager();
+            $this->preValidator->onPut($fcrApiDto);
 
-                $em->transactional(
-                    function () use ($fcrApiDto, $commandManager, &$json) {
-                        $json = $commandManager->put($fcrApiDto);
-                    }
-                );
-            } else {
-                throw new FcrInvalidException('The Dto has\'t ID or class invalid');
-            }
+            $json = [];
+            $em   = $this->getDoctrine()->getManager();
+
+            $em->transactional(
+                function () use ($fcrApiDto, $commandManager, &$json) {
+                    $json = $commandManager->put($fcrApiDto);
+                }
+            );
         } catch (\Exception $e) {
             $json = $this->setRestStatus($this->commandManager, $e);
         }
@@ -190,23 +200,20 @@ final class FcrApiController extends AbstractApiController implements ApiControl
         /** @var FcrApiDtoInterface $fcrApiDto */
         $fcrApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
 
-        $commandManager   = $this->commandManager;
+        $commandManager = $this->commandManager;
         $this->commandManager->setRestAccepted();
 
         try {
-            if ($fcrApiDto->hasId()) {
-                $json = [];
-                $em   = $this->getDoctrine()->getManager();
+            $this->preValidator->onDelete($fcrApiDto);
+            $json = [];
+            $em   = $this->getDoctrine()->getManager();
 
-                $em->transactional(
-                    function () use ($fcrApiDto, $commandManager, &$json) {
-                        $commandManager->delete($fcrApiDto);
-                        $json = ['OK'];
-                    }
-                );
-            } else {
-                throw new FcrInvalidException('The Dto has\'t ID or class invalid');
-            }
+            $em->transactional(
+                function () use ($fcrApiDto, $commandManager, &$json) {
+                    $commandManager->delete($fcrApiDto);
+                    $json = ['OK'];
+                }
+            );
         } catch (\Exception $e) {
             $json = $this->setRestStatus($this->commandManager, $e);
         }
@@ -263,7 +270,9 @@ final class FcrApiController extends AbstractApiController implements ApiControl
 
         return $this->setSerializeGroup('api_get_fcr')->json(['message' => 'Get fcr', 'data' => $json], $this->queryManager->getRestStatus());
     }
+//endregion Public
 
+//region SECTION: Getters/Setters
     /**
      * @Rest\Get("/api/fcr", options={"expose"=true}, name="api_fcr")
      * @OA\Get(
@@ -308,6 +317,12 @@ final class FcrApiController extends AbstractApiController implements ApiControl
         return $this->setSerializeGroup('api_get_fcr')->json(['message' => 'Get fcr', 'data' => $json], $this->queryManager->getRestStatus());
     }
 
+    /**
+     * @param RestInterface $manager
+     * @param \Exception    $e
+     *
+     * @return array
+     */
     public function setRestStatus(RestInterface $manager, \Exception $e): array
     {
         switch (true) {
@@ -329,4 +344,5 @@ final class FcrApiController extends AbstractApiController implements ApiControl
 
         return ['errors' => $e->getMessage()];
     }
+//endregion Getters/Setters
 }
