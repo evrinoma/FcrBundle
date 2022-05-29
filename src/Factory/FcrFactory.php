@@ -26,15 +26,7 @@ class FcrFactory implements FcrFactoryInterface
     public function create(FcrApiDtoInterface $dto): FcrInterface
     {
         /** @var BaseFcr $fcr */
-        $fcr = new self::$entityClass;
-
-        $fcr
-            ->setDescription($dto->getDescription())
-            ->setId($dto->getId())
-            ->setCreatedAt(new \DateTimeImmutable())
-            ->setActiveToActive();
-
-        return $fcr;
+        return new self::$entityClass;
     }
 //endregion Public
 }

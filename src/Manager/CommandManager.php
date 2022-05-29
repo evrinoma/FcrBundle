@@ -84,12 +84,6 @@ final class CommandManager implements CommandManagerInterface, RestInterface
             throw $e;
         }
 
-        $fcr
-            ->setDescription($dto->getDescription())
-            ->setId($dto->getId())
-            ->setUpdatedAt(new \DateTimeImmutable())
-            ->setActive($dto->getActive());
-
         $this->mediator->onUpdate($dto, $fcr);
 
         $errors = $this->validator->validate($fcr);
