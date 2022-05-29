@@ -17,18 +17,22 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
 
     public function onPut(DtoInterface $dto): void
     {
-        /** @var FcrApiDtoInterface $dto */
-        if (!$dto->hasId()) {
-            throw new FcrInvalidException('The Dto has\'t ID or class invalid');
-        }
+        $this->check($dto);
     }
 
     public function onDelete(DtoInterface $dto): void
+    {
+        $this->check($dto);
+    }
+//endregion Public
+
+//region SECTION: Private
+    private function check(DtoInterface $dto): void
     {
         /** @var FcrApiDtoInterface $dto */
         if (!$dto->hasId()) {
             throw new FcrInvalidException('The Dto has\'t ID or class invalid');
         }
     }
-//endregion Public
+//endregion Private
 }
