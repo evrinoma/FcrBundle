@@ -37,6 +37,7 @@ class Configuration implements ConfigurationInterface
             ->arrayNode('decorates')->addDefaultsIfNotSet()->children()
             ->scalarNode('command')->defaultNull()->info('This option is used for command fcr decoration')->end()
             ->scalarNode('query')->defaultNull()->info('This option is used for query fcr decoration')->end()
+            ->scalarNode('pre_validator')->defaultNull()->info('This option is used for pre_validator fcr decoration')->end()
             ->end()->end()->end();
 
         return $treeBuilder;

@@ -101,8 +101,9 @@ class EvrinomaFcrExtension extends Extension
                 $config['decorates'],
                 [
                     '' => [
-                        'command' => 'evrinoma.'.$this->getAlias().'.decorates.command',
-                        'query'   => 'evrinoma.'.$this->getAlias().'.decorates.query',
+                        'command'       => 'evrinoma.'.$this->getAlias().'.decorates.command',
+                        'query'         => 'evrinoma.'.$this->getAlias().'.decorates.query',
+                        'pre_validator' => 'evrinoma.'.$this->getAlias().'.decorates.pre.validator',
                     ],
                 ]
             );
@@ -146,7 +147,7 @@ class EvrinomaFcrExtension extends Extension
     private function wireController(ContainerBuilder $container, string $class): void
     {
         $definitionApiController = $container->getDefinition('evrinoma.'.$this->getAlias().'.api.controller');
-        $definitionApiController->setArgument(5, $class);
+        $definitionApiController->setArgument(6, $class);
     }
 
     private function wireValidator(ContainerBuilder $container, string $class): void
