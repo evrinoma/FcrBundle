@@ -58,10 +58,6 @@ class FcrRepository extends ServiceEntityRepository implements FcrRepositoryInte
      */
     public function remove(FcrInterface $fcr): bool
     {
-        $fcr
-            ->setUpdatedAt(new \DateTimeImmutable())
-            ->setActiveToDelete();
-
         return true;
     }
 //endregion Public
