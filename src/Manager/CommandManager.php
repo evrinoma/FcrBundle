@@ -2,8 +2,10 @@
 
 namespace Evrinoma\FcrBundle\Manager;
 
-use Evrinoma\FcrBundle\Exception\FcrCannotBeRemovedException;
 use Evrinoma\FcrBundle\Dto\FcrApiDtoInterface;
+use Evrinoma\FcrBundle\Exception\FcrCannotBeCreatedException;
+use Evrinoma\FcrBundle\Exception\FcrCannotBeRemovedException;
+use Evrinoma\FcrBundle\Exception\FcrCannotBeSavedException;
 use Evrinoma\FcrBundle\Exception\FcrInvalidException;
 use Evrinoma\FcrBundle\Exception\FcrNotFoundException;
 use Evrinoma\FcrBundle\Factory\FcrFactoryInterface;
@@ -48,6 +50,8 @@ final class CommandManager implements CommandManagerInterface, RestInterface
      *
      * @return FcrInterface
      * @throws FcrInvalidException
+     * @throws FcrCannotBeCreatedException
+     * @throws FcrCannotBeSavedException
      */
     public function post(FcrApiDtoInterface $dto): FcrInterface
     {
@@ -75,6 +79,7 @@ final class CommandManager implements CommandManagerInterface, RestInterface
      * @return FcrInterface
      * @throws FcrInvalidException
      * @throws FcrNotFoundException
+     * @throws FcrCannotBeSavedException
      */
     public function put(FcrApiDtoInterface $dto): FcrInterface
     {
