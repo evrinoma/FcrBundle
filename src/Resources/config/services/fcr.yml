@@ -11,6 +11,7 @@ services:
       - '@evrinoma.dto.factory'
       - '@evrinoma.fcr.command.manager'
       - '@evrinoma.fcr.query.manager'
+      - '@evrinoma.fcr.pre.validator'
     autowire: true
 
   evrinoma.fcr.factory:
@@ -65,3 +66,14 @@ services:
 
   Evrinoma\FcrBundle\Mediator\CommandMediatorInterface:
     alias: evrinoma.fcr.command.mediator
+
+  evrinoma.fcr.pre.validator:
+    class: Evrinoma\FcrBundle\PreValidator\DtoPreValidator
+    public: true
+    arguments:
+
+  Evrinoma\FcrBundle\PreValidator\DtoPreValidator:
+    alias: evrinoma.fcr.pre.validator
+
+  Evrinoma\FcrBundle\PreValidator\DtoPreValidatorInterface:
+    alias: evrinoma.fcr.pre.validator
