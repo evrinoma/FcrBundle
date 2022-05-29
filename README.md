@@ -8,6 +8,10 @@
                  не достающие значения можно разрешить на уровне Mediator или переопределив фабрику
         entity: App\Fcr\Entity\Fcr сущность
         dto_class: App\Fcr\Dto\FcrDto класс dto с которым работает сущность
+        decorates:
+          command - декоратор команд цфо
+          query - декоратор запросов цфо
+          pre_validator - декоратор валидатора цфо
 
 # CQRS model
 
