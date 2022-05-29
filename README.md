@@ -5,12 +5,12 @@
     contractor:
         db_driver: orm модель данных
         factory: App\Fcr\Factory\FcrFactory фабрика для создания объектов,
-                 не достающие значения можно разрешить на уровне Mediator или переопределив фабрику
+                 недостающие значения можно разрешить только на уровне Mediator
         entity: App\Fcr\Entity\Fcr сущность
         dto_class: App\Fcr\Dto\FcrDto класс dto с которым работает сущность
         decorates:
-          command - декоратор команд цфо
-          query - декоратор запросов цфо
+          command - декоратор mediator команд цфо 
+          query - декоратор mediator запросов цфо
           pre_validator - декоратор валидатора цфо
 
 # CQRS model
