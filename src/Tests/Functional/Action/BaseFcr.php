@@ -5,6 +5,9 @@ namespace Evrinoma\FcrBundle\Tests\Functional\Action;
 
 use Evrinoma\FcrBundle\Dto\FcrApiDto;
 use Evrinoma\FcrBundle\Tests\Functional\Helper\BaseFcrTestTrait;
+use Evrinoma\FcrBundle\Tests\Functional\ValueObject\Fcr\Active;
+use Evrinoma\FcrBundle\Tests\Functional\ValueObject\Fcr\Description;
+use Evrinoma\FcrBundle\Tests\Functional\ValueObject\Fcr\Id;
 use Evrinoma\TestUtilsBundle\Action\AbstractServiceTest;
 use Evrinoma\UtilsBundle\Model\ActiveModel;
 use PHPUnit\Framework\Assert;
@@ -30,8 +33,8 @@ class BaseFcr extends AbstractServiceTest implements BaseFcrTestInterface
     protected static function defaultData(): array
     {
         return [
-            "id"          => '88',
-            "description" => 'kpz',
+            "id"          => Id::default(),
+            "description" => Description::default(),
             "class"       => static::getDtoClass(),
         ];
     }
@@ -46,101 +49,101 @@ class BaseFcr extends AbstractServiceTest implements BaseFcrTestInterface
 
     public function actionCriteriaNotFound(): void
     {
-        $find = $this->criteria(["class" => static::getDtoClass(), "active" => "e"]);
+        $find = $this->criteria(["class" => static::getDtoClass(), "active" => Active::wrong()]);
         $this->testResponseStatusNotFound();
         Assert::assertArrayHasKey('data', $find);
 
-        $find = $this->criteria(["class" => static::getDtoClass(), "id" => 49, "active" => "b", "description" => 'nvr5']);
+        $find = $this->criteria(["class" => static::getDtoClass(), "id" => Id::value(), "active" => Active::block(), "description" => Description::wrong()]);
         $this->testResponseStatusNotFound();
         Assert::assertArrayHasKey('data', $find);
     }
 
     public function actionCriteria(): void
     {
-        $find = $this->criteria(["class" => static::getDtoClass(), "active" => "a", "id" => 48]);
+        $find = $this->criteria(["class" => static::getDtoClass(), "active" => Active::value(), "id" => Id::value()]);
         $this->testResponseStatusOK();
         Assert::assertCount(1, $find['data']);
 
-        $find = $this->criteria(["class" => static::getDtoClass(), "active" => "d"]);
+        $find = $this->criteria(["class" => static::getDtoClass(), "active" => Active::delete()]);
         $this->testResponseStatusOK();
         Assert::assertCount(3, $find['data']);
 
-        $find = $this->criteria(["class" => static::getDtoClass(), "active" => "d", "description" => 'nvr']);
+        $find = $this->criteria(["class" => static::getDtoClass(), "active" => Active::delete(), "description" => Description::value()]);
         $this->testResponseStatusOK();
         Assert::assertCount(2, $find['data']);
 
-        $find = $this->criteria(["class" => static::getDtoClass(), "id" => 49, "active" => "b", "description" => 'nvr']);
+        $find = $this->criteria(["class" => static::getDtoClass(), "id" => 49, "active" => Active::block(), "description" => Description::value()]);
         $this->testResponseStatusOK();
         Assert::assertCount(1, $find['data']);
     }
 
     public function actionDelete(): void
     {
-        $find = $this->assertGet(48);
+        $find = $this->assertGet(Id::value());
 
         Assert::assertEquals(ActiveModel::ACTIVE, $find['data']['active']);
 
-        $this->delete(48);
+        $this->delete(Id::value());
         $this->testResponseStatusAccepted();
 
-        $delete = $this->assertGet(48);
+        $delete = $this->assertGet(Id::value());
 
         Assert::assertEquals(ActiveModel::DELETED, $delete['data']['active']);
     }
 
     public function actionPut(): void
     {
-        $find = $this->assertGet(48);
+        $find = $this->assertGet(Id::value());
 
-        $updated = $this->put(static::getDefault(['id' => 48, 'description' => 'ITE_48']));
+        $updated = $this->put(static::getDefault(['id' => Id::value(), 'description' => Description::ITE_48()]));
         $this->testResponseStatusOK();
 
         Assert::assertEquals($find['data']['id'], $updated['data']['id']);
-        Assert::assertEquals('ITE_48', $updated['data']['description']);
+        Assert::assertEquals(Description::ITE_48(), $updated['data']['description']);
     }
 
     public function actionGet(): void
     {
-        $find = $this->assertGet(48);
+        $find = $this->assertGet(Id::value());
     }
 
     public function actionGetNotFound(): void
     {
-        $response = $this->get(100);
+        $response = $this->get(Id::wrong());
         Assert::assertArrayHasKey('data', $response);
         $this->testResponseStatusNotFound();
     }
 
     public function actionDeleteNotFound(): void
     {
-        $response = $this->delete(100);
+        $response = $this->delete(Id::wrong());
         Assert::assertArrayHasKey('data', $response);
         $this->testResponseStatusNotFound();
     }
 
     public function actionDeleteUnprocessable(): void
     {
-        $response = $this->delete('');
+        $response = $this->delete(Id::empty());
         Assert::assertArrayHasKey('data', $response);
         $this->testResponseStatusUnprocessable();
     }
 
     public function actionPutNotFound(): void
     {
-        $this->put(static::getDefault(["id" => 100, "description" => "rcf",]));
+        $this->put(static::getDefault(["id" => Id::wrong(), "description" => Description::rcf(),]));
         $this->testResponseStatusNotFound();
     }
 
     public function actionPutUnprocessable(): void
     {
-        $query = static::getDefault(['id' => '']);
+        $query = static::getDefault(['id' => Id::empty()]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
 
         $this->createFcr();
 
-        $query = static::getDefault(['description' => '']);
+        $query = static::getDefault(['description' => Description::empty()]);
 
         $this->put($query);
         $this->testResponseStatusUnprocessable();
