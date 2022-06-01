@@ -32,11 +32,17 @@ services:
       - '@evrinoma.fcr.factory'
       - '@evrinoma.fcr.command.mediator'
 
+  Evrinoma\FcrBundle\Manager\CommandManagerInterface:
+    alias: evrinoma.fcr.command.manager
+
   evrinoma.fcr.query.manager:
     class: Evrinoma\FcrBundle\Manager\QueryManager
     arguments:
       - '@evrinoma.fcr.repository'
 
+  Evrinoma\FcrBundle\Manager\QueryManagerInterface:
+    alias: evrinoma.fcr.query.manager
+    
   evrinoma.fcr.validator:
     class: Evrinoma\FcrBundle\Validator\FcrValidator
     public: true
