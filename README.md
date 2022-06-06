@@ -7,6 +7,7 @@
         factory: App\Fcr\Factory\FcrFactory фабрика для создания объектов,
                  недостающие значения можно разрешить только на уровне Mediator
         entity: App\Fcr\Entity\Fcr сущность
+        constraints: Вкл/выкл проверки полей сущности по умолчанию 
         dto_class: App\Fcr\Dto\FcrDto класс dto с которым работает сущность
         decorates:
           command - декоратор mediator команд цфо 
@@ -56,7 +57,7 @@ Actions в контроллере разбиты на две группы
 
 # Constraint
 
-Для добавления проверки поля сушности fcr нужно описать логику проверки реализующую интерфейс Evrinoma\UtilsBundle\Constraint\Property\ConstraintInterface и зарегестрировать сервис с этикеткой evrinoma.fcr.constraint.property
+Для добавления проверки поля сущности fcr нужно описать логику проверки реализующую интерфейс Evrinoma\UtilsBundle\Constraint\Property\ConstraintInterface и зарегистрировать сервис с этикеткой evrinoma.fcr.constraint.property
 
     evrinoma.fcr.constraint.property.custom:
         class: App\Fcr\Constraint\Property\Custom
