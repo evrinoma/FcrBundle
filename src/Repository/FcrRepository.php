@@ -15,11 +15,10 @@ use Evrinoma\FcrBundle\Model\Fcr\FcrInterface;
 
 class FcrRepository extends ServiceEntityRepository implements FcrRepositoryInterface
 {
-//region SECTION: Fields
-    private QueryMediatorInterface $mediator;
-//endregion Fields
 
-//region SECTION: Constructor
+    private QueryMediatorInterface $mediator;
+
+
     /**
      * @param ManagerRegistry        $registry
      * @param string                 $entityClass
@@ -30,9 +29,8 @@ class FcrRepository extends ServiceEntityRepository implements FcrRepositoryInte
         parent::__construct($registry, $entityClass);
         $this->mediator = $mediator;
     }
-//endregion Constructor
 
-//region SECTION: Public
+
     /**
      * @param FcrInterface $fcr
      *
@@ -60,9 +58,8 @@ class FcrRepository extends ServiceEntityRepository implements FcrRepositoryInte
     {
         return true;
     }
-//endregion Public
 
-//region SECTION: Find Filters Repository
+
     /**
      * @param FcrApiDtoInterface $dto
      *
@@ -123,5 +120,5 @@ class FcrRepository extends ServiceEntityRepository implements FcrRepositoryInte
 
         return $fcr;
     }
-//endregion Find Filters Repository
+
 }

@@ -10,14 +10,13 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 final class FcrValidator extends AbstractValidator
 {
-//region SECTION: Fields
+
     /**
      * @var string|null
      */
     protected static ?string $entityClass = BaseFcr::class;
-//endregion Fields
 
-//region SECTION: Constructor
+
     /**
      * @param ValidatorInterface $validator
      * @param string             $entityClass
@@ -26,5 +25,5 @@ final class FcrValidator extends AbstractValidator
     {
         parent::__construct($validator, $entityClass);
     }
-//endregion Constructor
+
 }

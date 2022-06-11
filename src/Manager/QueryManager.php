@@ -14,18 +14,16 @@ final class QueryManager implements QueryManagerInterface, RestInterface
 {
     use RestTrait;
 
-//region SECTION: Fields
-    private FcrQueryRepositoryInterface $repository;
-//endregion Fields
 
-//region SECTION: Constructor
+    private FcrQueryRepositoryInterface $repository;
+
+
     public function __construct(FcrQueryRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
-//endregion Constructor
 
-//region SECTION: Public
+
     /**
      * @param FcrApiDtoInterface $dto
      *
@@ -63,9 +61,8 @@ final class QueryManager implements QueryManagerInterface, RestInterface
 
         return $fcr;
     }
-//endregion Public
 
-//region SECTION: Getters/Setters
+
     public function getRestStatus(): int
     {
         return $this->status;
@@ -87,5 +84,5 @@ final class QueryManager implements QueryManagerInterface, RestInterface
 
         return $fcr;
     }
-//endregion Getters/Setters
+
 }

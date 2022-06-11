@@ -16,15 +16,14 @@ class BaseFcr extends AbstractServiceTest implements BaseFcrTestInterface
 {
     use BaseFcrTestTrait;
 
-//region SECTION: Fields
+
     public const API_GET      = 'evrinoma/api/fcr';
     public const API_CRITERIA = 'evrinoma/api/fcr/criteria';
     public const API_DELETE   = 'evrinoma/api/fcr/delete';
     public const API_PUT      = 'evrinoma/api/fcr/save';
     public const API_POST     = 'evrinoma/api/fcr/create';
-//endregion Fields
 
-//region SECTION: Protected
+
     protected static function getDtoClass(): string
     {
         return FcrApiDto::class;
@@ -38,9 +37,8 @@ class BaseFcr extends AbstractServiceTest implements BaseFcrTestInterface
             "class"       => static::getDtoClass(),
         ];
     }
-//endregion Protected
 
-//region SECTION: Public
+
     public function actionPost(): void
     {
         $this->createFcr();
@@ -175,5 +173,5 @@ class BaseFcr extends AbstractServiceTest implements BaseFcrTestInterface
         $this->createConstraintBlankDescription();
         $this->testResponseStatusUnprocessable();
     }
-//endregion Public
+
 }

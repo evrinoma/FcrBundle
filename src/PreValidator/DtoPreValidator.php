@@ -10,7 +10,7 @@ use Evrinoma\UtilsBundle\PreValidator\AbstractPreValidator;
 class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInterface
 {
 
-//region SECTION: Public
+
     public function onPost(DtoInterface $dto): void
     {
     }
@@ -24,9 +24,8 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
     {
         $this->check($dto);
     }
-//endregion Public
 
-//region SECTION: Private
+
     private function check(DtoInterface $dto): void
     {
         /** @var FcrApiDtoInterface $dto */
@@ -34,5 +33,5 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
             throw new FcrInvalidException('The Dto has\'t ID or class invalid');
         }
     }
-//endregion Private
+
 }

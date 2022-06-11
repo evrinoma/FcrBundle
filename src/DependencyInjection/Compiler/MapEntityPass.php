@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class MapEntityPass extends AbstractMapEntity implements CompilerPassInterface
 {
-//region SECTION: Public
+
     /**
      * @inheritDoc
      */
@@ -32,5 +32,4 @@ class MapEntityPass extends AbstractMapEntity implements CompilerPassInterface
     }
 
 
-//endregion Private
 }

@@ -7,7 +7,7 @@ use PHPUnit\Framework\Assert;
 
 trait BaseFcrTestTrait
 {
-//region SECTION: Protected
+
     protected function assertGet(int $id): array
     {
         $find = $this->get($id);
@@ -60,5 +60,5 @@ trait BaseFcrTestTrait
         Assert::assertArrayHasKey('description', $entity['data']);
         Assert::assertArrayHasKey('active', $entity['data']);
     }
-//endregion Protected
+
 }

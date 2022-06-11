@@ -7,7 +7,7 @@ use Evrinoma\DtoBundle\Dto\DtoInterface;
 
 trait FcrApiDtoTrait
 {
-//region SECTION: Getters/Setters
+
     /**
      * @param string $active
      *
@@ -38,5 +38,5 @@ trait FcrApiDtoTrait
         return parent::setDescription($description);
     }
 
-//endregion Getters/Setters
+
 }

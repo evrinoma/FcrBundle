@@ -20,7 +20,7 @@ abstract class AbstractFcr implements FcrInterface
 {
     use IdTrait, CreateUpdateAtTrait, ActiveTrait, DescriptionTrait;
 
-//region SECTION: Fields
+
     /**
      * @var int
      *
@@ -34,9 +34,8 @@ abstract class AbstractFcr implements FcrInterface
      * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     protected string $description;
-//endregion Fields
 
-//region SECTION: Getters/Setters
+
     /**
      * @param int|null $id
      *
@@ -48,5 +47,5 @@ abstract class AbstractFcr implements FcrInterface
 
         return $this;
     }
-//endregion Getters/Setters
+
 }

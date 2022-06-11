@@ -11,9 +11,9 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class EvrinomaFcrBundle extends Bundle
 {
-//region SECTION: Fields
+
     public const FCR_BUNDLE = 'fcr';
-//endregion Fields
+
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
@@ -23,7 +23,7 @@ class EvrinomaFcrBundle extends Bundle
             ->addCompilerPass(new FcrPass())
         ;
     }
-//region SECTION: Getters/Setters
+
     public function getContainerExtension()
     {
         if (null === $this->extension) {
@@ -32,5 +32,5 @@ class EvrinomaFcrBundle extends Bundle
 
         return $this->extension;
     }
-//endregion Getters/Setters
+
 }

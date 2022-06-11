@@ -13,7 +13,7 @@ class FcrApiDto extends AbstractDto implements FcrApiDtoInterface
 {
     use IdTrait, DescriptionTrait, ActiveTrait;
 
-//region SECTION: Dto
+
     public function toDto(Request $request): DtoInterface
     {
         $class = $request->get(DtoInterface::DTO_CLASS);
@@ -36,5 +36,5 @@ class FcrApiDto extends AbstractDto implements FcrApiDtoInterface
 
         return $this;
     }
-//endregion SECTION: Dto
+
 }

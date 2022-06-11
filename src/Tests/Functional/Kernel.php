@@ -9,12 +9,11 @@ use Evrinoma\TestUtilsBundle\Kernel\AbstractApiKernel;
  */
 class Kernel extends AbstractApiKernel
 {
-//region SECTION: Fields
+
     protected string $bundlePrefix = 'FcrBundle';
     protected string $rootDir = __DIR__;
-//endregion Fields
 
-//region SECTION: Public
+
     /**
      * {@inheritdoc}
      */

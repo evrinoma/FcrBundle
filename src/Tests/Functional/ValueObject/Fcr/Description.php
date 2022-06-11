@@ -6,11 +6,10 @@ use Evrinoma\TestUtilsBundle\ValueObject\Common\AbstractIdentity;
 
 class Description extends AbstractIdentity
 {
-//region SECTION: Fields
+
     protected static string $value   = "nvr";
     protected static string $default = "kpz";
 
-//endregion Fields
 
     public static function ITE_48(): string
     {

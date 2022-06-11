@@ -10,7 +10,7 @@ use Evrinoma\TestUtilsBundle\Fixtures\AbstractFixture;
 
 class FcrFixtures extends AbstractFixture implements FixtureGroupInterface, OrderedFixtureInterface
 {
-//region SECTION: Fields
+
     protected static array $data = [
         ['id' => 48, 'description' => 'ite', 'active' => 'a', 'created_at' => '2008-10-23 10:21:50'],
         ['id' => 10001, 'description' => 'kzkt', 'active' => 'a', 'created_at' => '2015-10-23 10:21:50'],
@@ -22,9 +22,8 @@ class FcrFixtures extends AbstractFixture implements FixtureGroupInterface, Orde
     ];
 
     protected static string $class = BaseFcr::class;
-//endregion Fields
 
-//region SECTION: Private
+
     /**
      * @param ObjectManager $manager
      *
@@ -50,9 +49,8 @@ class FcrFixtures extends AbstractFixture implements FixtureGroupInterface, Orde
 
         return $this;
     }
-//endregion Private
 
-//region SECTION: Getters/Setters
+
     public static function getGroups(): array
     {
         return [

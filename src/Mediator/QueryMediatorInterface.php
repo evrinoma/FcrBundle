@@ -19,9 +19,8 @@ interface QueryMediatorInterface
      * @return mixed
      */
     public function createQuery(FcrApiDtoInterface $dto, QueryBuilder $builder):void;
-//endregion Public
 
-//region SECTION: Getters/Setters
+
     /**
      * @param FcrApiDtoInterface $dto
      * @param QueryBuilder              $builder

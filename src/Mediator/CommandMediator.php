@@ -9,7 +9,7 @@ use Evrinoma\UtilsBundle\Mediator\AbstractCommandMediator;
 
 class CommandMediator extends AbstractCommandMediator implements CommandMediatorInterface
 {
-//region SECTION: Public
+
     public function onUpdate(DtoInterface $dto, $entity): FcrInterface
     {
         /** @var $dto FcrApiDtoInterface */
@@ -40,5 +40,5 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
 
         return $entity;
     }
-//endregion Public
+
 }

@@ -16,9 +16,8 @@ interface QueryManagerInterface
      * @throws FcrNotFoundException
      */
     public function criteria(FcrApiDtoInterface $dto): array;
-//endregion Public
 
-//region SECTION: Getters/Setters
+
     /**
      * @param FcrApiDtoInterface $dto
      *

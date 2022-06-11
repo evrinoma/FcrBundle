@@ -19,7 +19,7 @@ class EvrinomaFcrExtension extends Extension
 {
     use HelperTrait;
 
-//region SECTION: Fields
+
     public const ENTITY             = 'Evrinoma\FcrBundle\Entity';
     public const ENTITY_FACTORY_FCR = 'Evrinoma\FcrBundle\Factory\FcrFactory';
     public const ENTITY_BASE_FCR    = self::ENTITY.'\Fcr\BaseFcr';
@@ -33,9 +33,8 @@ class EvrinomaFcrExtension extends Extension
             'tag'      => 'doctrine.event_subscriber',
         ),
     );
-//endregion Fields
 
-//region SECTION: Public
+
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
@@ -109,9 +108,7 @@ class EvrinomaFcrExtension extends Extension
             );
         }
     }
-//endregion Public
 
-//region SECTION: Private
 
     private function wireConstraintTag(ContainerBuilder $container): void
     {
@@ -156,12 +153,11 @@ class EvrinomaFcrExtension extends Extension
         $definitionApiController->setArgument(0, new Reference('validator'));
         $definitionApiController->setArgument(1, $class);
     }
-//endregion Private
 
-//region SECTION: Getters/Setters
+
     public function getAlias()
     {
         return EvrinomaFcrBundle::FCR_BUNDLE;
     }
-//endregion Getters/Setters
+
 }

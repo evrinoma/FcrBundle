@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class FcrApiController extends AbstractApiController implements ApiControllerInterface
 {
-//region SECTION: Fields
+
     private string $dtoClass;
     /**
      * @var ?Request
@@ -46,9 +46,8 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      * @var DtoPreValidator
      */
     private DtoPreValidator $preValidator;
-//endregion Fields
 
-//region SECTION: Constructor
+
     public function __construct(SerializerInterface $serializer, RequestStack $requestStack, FactoryDtoInterface $factoryDto, CommandManagerInterface $commandManager, QueryManagerInterface $queryManager, DtoPreValidator $preValidator, string $dtoClass)
     {
         parent::__construct($serializer);
@@ -59,9 +58,8 @@ final class FcrApiController extends AbstractApiController implements ApiControl
         $this->dtoClass       = $dtoClass;
         $this->preValidator   = $preValidator;
     }
-//endregion Constructor
 
-//region SECTION: Public
+
     /**
      * @Rest\Post("/api/fcr/create", options={"expose"=true}, name="api_fcr_create")
      * @OA\Post(
@@ -270,9 +268,8 @@ final class FcrApiController extends AbstractApiController implements ApiControl
 
         return $this->setSerializeGroup('api_get_fcr')->json(['message' => 'Get fcr', 'data' => $json], $this->queryManager->getRestStatus());
     }
-//endregion Public
 
-//region SECTION: Getters/Setters
+
     /**
      * @Rest\Get("/api/fcr", options={"expose"=true}, name="api_fcr")
      * @OA\Get(
@@ -344,5 +341,5 @@ final class FcrApiController extends AbstractApiController implements ApiControl
 
         return ['errors' => $e->getMessage()];
     }
-//endregion Getters/Setters
+
 }

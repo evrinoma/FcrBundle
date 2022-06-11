@@ -8,16 +8,15 @@ use Evrinoma\FcrBundle\Model\Fcr\FcrInterface;
 
 class FcrFactory implements FcrFactoryInterface
 {
-//region SECTION: Fields
+
     private static string $entityClass = BaseFcr::class;
 
     public function __construct(string $entityClass)
     {
         self::$entityClass = $entityClass;
     }
-//endregion Fields
 
-//region SECTION: Public
+
     /**
      * @param FcrApiDtoInterface $dto
      *
@@ -28,5 +27,5 @@ class FcrFactory implements FcrFactoryInterface
         /** @var BaseFcr $fcr */
         return new self::$entityClass;
     }
-//endregion Public
+
 }
