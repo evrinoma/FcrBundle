@@ -40,6 +40,7 @@
         "symfony/form": "5.2.*",
         "symfony/validator": "5.2.*",
         "phpunit/phpunit": "^9.5.2",
+        "friendsofphp/php-cs-fixer": "^3.4|^3.8",
         "friendsofsymfony/rest-bundle": "^3",
         "nelmio/api-doc-bundle": "^4",
         "doctrine/annotations": "^1.0",
