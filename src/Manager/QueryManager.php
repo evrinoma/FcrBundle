@@ -1,10 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the package.
+ *
+ * (c) Nikolay Nikolaev <evrinoma@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Evrinoma\FcrBundle\Manager;
 
-use Evrinoma\FcrBundle\Exception\FcrProxyException;
 use Evrinoma\FcrBundle\Dto\FcrApiDtoInterface;
 use Evrinoma\FcrBundle\Exception\FcrNotFoundException;
+use Evrinoma\FcrBundle\Exception\FcrProxyException;
 use Evrinoma\FcrBundle\Model\Fcr\FcrInterface;
 use Evrinoma\FcrBundle\Repository\FcrQueryRepositoryInterface;
 use Evrinoma\UtilsBundle\Rest\RestInterface;
@@ -14,20 +25,18 @@ final class QueryManager implements QueryManagerInterface, RestInterface
 {
     use RestTrait;
 
-
     private FcrQueryRepositoryInterface $repository;
-
 
     public function __construct(FcrQueryRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
 
-
     /**
      * @param FcrApiDtoInterface $dto
      *
      * @return array
+     *
      * @throws FcrNotFoundException
      */
     public function criteria(FcrApiDtoInterface $dto): array
@@ -45,6 +54,7 @@ final class QueryManager implements QueryManagerInterface, RestInterface
      * @param FcrApiDtoInterface $dto
      *
      * @return FcrInterface
+     *
      * @throws FcrProxyException
      */
     public function proxy(FcrApiDtoInterface $dto): FcrInterface
@@ -53,7 +63,7 @@ final class QueryManager implements QueryManagerInterface, RestInterface
             if ($dto->hasId()) {
                 $fcr = $this->repository->proxy($dto->getId());
             } else {
-                throw new FcrProxyException("Id value is not set while trying get proxy object");
+                throw new FcrProxyException('Id value is not set while trying get proxy object');
             }
         } catch (FcrProxyException $e) {
             throw $e;
@@ -61,7 +71,6 @@ final class QueryManager implements QueryManagerInterface, RestInterface
 
         return $fcr;
     }
-
 
     public function getRestStatus(): int
     {
@@ -72,6 +81,7 @@ final class QueryManager implements QueryManagerInterface, RestInterface
      * @param FcrApiDtoInterface $dto
      *
      * @return FcrInterface
+     *
      * @throws FcrNotFoundException
      */
     public function get(FcrApiDtoInterface $dto): FcrInterface
@@ -84,5 +94,4 @@ final class QueryManager implements QueryManagerInterface, RestInterface
 
         return $fcr;
     }
-
 }

@@ -1,7 +1,17 @@
 <?php
 
-namespace Evrinoma\FcrBundle\Tests\Functional\Action;
+declare(strict_types=1);
 
+/*
+ * This file is part of the package.
+ *
+ * (c) Nikolay Nikolaev <evrinoma@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Evrinoma\FcrBundle\Tests\Functional\Action;
 
 use Evrinoma\FcrBundle\Dto\FcrApiDto;
 use Evrinoma\FcrBundle\Tests\Functional\Helper\BaseFcrTestTrait;
@@ -16,13 +26,11 @@ class BaseFcr extends AbstractServiceTest implements BaseFcrTestInterface
 {
     use BaseFcrTestTrait;
 
-
-    public const API_GET      = 'evrinoma/api/fcr';
+    public const API_GET = 'evrinoma/api/fcr';
     public const API_CRITERIA = 'evrinoma/api/fcr/criteria';
-    public const API_DELETE   = 'evrinoma/api/fcr/delete';
-    public const API_PUT      = 'evrinoma/api/fcr/save';
-    public const API_POST     = 'evrinoma/api/fcr/create';
-
+    public const API_DELETE = 'evrinoma/api/fcr/delete';
+    public const API_PUT = 'evrinoma/api/fcr/save';
+    public const API_POST = 'evrinoma/api/fcr/create';
 
     protected static function getDtoClass(): string
     {
@@ -32,12 +40,11 @@ class BaseFcr extends AbstractServiceTest implements BaseFcrTestInterface
     protected static function defaultData(): array
     {
         return [
-            "id"          => Id::default(),
-            "description" => Description::default(),
-            "class"       => static::getDtoClass(),
+            'id' => Id::default(),
+            'description' => Description::default(),
+            'class' => static::getDtoClass(),
         ];
     }
-
 
     public function actionPost(): void
     {
@@ -47,30 +54,30 @@ class BaseFcr extends AbstractServiceTest implements BaseFcrTestInterface
 
     public function actionCriteriaNotFound(): void
     {
-        $find = $this->criteria(["class" => static::getDtoClass(), "active" => Active::wrong()]);
+        $find = $this->criteria(['class' => static::getDtoClass(), 'active' => Active::wrong()]);
         $this->testResponseStatusNotFound();
         Assert::assertArrayHasKey('data', $find);
 
-        $find = $this->criteria(["class" => static::getDtoClass(), "id" => Id::value(), "active" => Active::block(), "description" => Description::wrong()]);
+        $find = $this->criteria(['class' => static::getDtoClass(), 'id' => Id::value(), 'active' => Active::block(), 'description' => Description::wrong()]);
         $this->testResponseStatusNotFound();
         Assert::assertArrayHasKey('data', $find);
     }
 
     public function actionCriteria(): void
     {
-        $find = $this->criteria(["class" => static::getDtoClass(), "active" => Active::value(), "id" => Id::value()]);
+        $find = $this->criteria(['class' => static::getDtoClass(), 'active' => Active::value(), 'id' => Id::value()]);
         $this->testResponseStatusOK();
         Assert::assertCount(1, $find['data']);
 
-        $find = $this->criteria(["class" => static::getDtoClass(), "active" => Active::delete()]);
+        $find = $this->criteria(['class' => static::getDtoClass(), 'active' => Active::delete()]);
         $this->testResponseStatusOK();
         Assert::assertCount(3, $find['data']);
 
-        $find = $this->criteria(["class" => static::getDtoClass(), "active" => Active::delete(), "description" => Description::value()]);
+        $find = $this->criteria(['class' => static::getDtoClass(), 'active' => Active::delete(), 'description' => Description::value()]);
         $this->testResponseStatusOK();
         Assert::assertCount(2, $find['data']);
 
-        $find = $this->criteria(["class" => static::getDtoClass(), "id" => 49, "active" => Active::block(), "description" => Description::value()]);
+        $find = $this->criteria(['class' => static::getDtoClass(), 'id' => 49, 'active' => Active::block(), 'description' => Description::value()]);
         $this->testResponseStatusOK();
         Assert::assertCount(1, $find['data']);
     }
@@ -128,7 +135,7 @@ class BaseFcr extends AbstractServiceTest implements BaseFcrTestInterface
 
     public function actionPutNotFound(): void
     {
-        $this->put(static::getDefault(["id" => Id::wrong(), "description" => Description::rcf(),]));
+        $this->put(static::getDefault(['id' => Id::wrong(), 'description' => Description::rcf()]));
         $this->testResponseStatusNotFound();
     }
 
@@ -173,5 +180,4 @@ class BaseFcr extends AbstractServiceTest implements BaseFcrTestInterface
         $this->createConstraintBlankDescription();
         $this->testResponseStatusUnprocessable();
     }
-
 }

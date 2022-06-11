@@ -26,20 +26,20 @@ EOF;
 
 return (new PhpCsFixer\Config())
     ->setRules([
-        '@PSR2'                                            => true,
-        '@PHP71Migration'                                  => true,
-        '@PHPUnit75Migration:risky'                        => true,
-        '@Symfony'                                         => true,
-        '@Symfony:risky'                                   => true,
-        '@DoctrineAnnotation'                              => true,
-        'protected_to_private'                             => true,
-        'native_constant_invocation'                       => ['strict' => false],
+        '@PSR2' => true,
+        '@PHP71Migration' => true,
+        '@PHPUnit75Migration:risky' => true,
+        '@Symfony' => true,
+        '@Symfony:risky' => true,
+        '@DoctrineAnnotation' => true,
+        'protected_to_private' => true,
+        'native_constant_invocation' => ['strict' => false],
         'nullable_type_declaration_for_default_null_value' => ['use_nullable_type_declaration' => false],
-        'header_comment'                                   => ['header' => $fileHeaderComment],
-        'modernize_strpos'                                 => true,
-        'declare_strict_types'                             => true,
-        'no_superfluous_phpdoc_tags'                       => false,
-        'self_accessor'                                    => false,
+        'header_comment' => ['header' => $fileHeaderComment],
+        'modernize_strpos' => true,
+        'declare_strict_types' => true,
+        'no_superfluous_phpdoc_tags' => false,
+        'self_accessor' => false,
     ])
     ->setRiskyAllowed(true)
     ->setFinder(

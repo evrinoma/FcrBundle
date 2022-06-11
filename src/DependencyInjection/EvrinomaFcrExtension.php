@@ -1,7 +1,17 @@
 <?php
 
-namespace Evrinoma\FcrBundle\DependencyInjection;
+declare(strict_types=1);
 
+/*
+ * This file is part of the package.
+ *
+ * (c) Nikolay Nikolaev <evrinoma@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Evrinoma\FcrBundle\DependencyInjection;
 
 use Evrinoma\FcrBundle\DependencyInjection\Compiler\Constraint\Property\FcrPass;
 use Evrinoma\FcrBundle\Dto\FcrApiDto;
@@ -19,39 +29,37 @@ class EvrinomaFcrExtension extends Extension
 {
     use HelperTrait;
 
-
-    public const ENTITY             = 'Evrinoma\FcrBundle\Entity';
+    public const ENTITY = 'Evrinoma\FcrBundle\Entity';
     public const ENTITY_FACTORY_FCR = 'Evrinoma\FcrBundle\Factory\FcrFactory';
-    public const ENTITY_BASE_FCR    = self::ENTITY.'\Fcr\BaseFcr';
-    public const DTO_BASE_FCR       = FcrApiDto::class;
+    public const ENTITY_BASE_FCR = self::ENTITY.'\Fcr\BaseFcr';
+    public const DTO_BASE_FCR = FcrApiDto::class;
     /**
      * @var array
      */
-    private static array $doctrineDrivers = array(
-        'orm' => array(
+    private static array $doctrineDrivers = [
+        'orm' => [
             'registry' => 'doctrine',
-            'tag'      => 'doctrine.event_subscriber',
-        ),
-    );
-
+            'tag' => 'doctrine.event_subscriber',
+        ],
+    ];
 
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        if ($container->getParameter('kernel.environment') !== 'prod') {
+        if ('prod' !== $container->getParameter('kernel.environment')) {
             $loader->load('fixtures.yml');
         }
 
-        if ($container->getParameter('kernel.environment') === 'test') {
+        if ('test' === $container->getParameter('kernel.environment')) {
             $loader->load('tests.yml');
         }
 
         $configuration = $this->getConfiguration($configs, $container);
-        $config        = $this->processConfiguration($configuration, $configs);
+        $config = $this->processConfiguration($configuration, $configs);
 
-        if ($config['factory'] !== self::ENTITY_FACTORY_FCR) {
+        if (self::ENTITY_FACTORY_FCR !== $config['factory']) {
             $this->wireFactory($container, $config['factory'], $config['entity']);
         } else {
             $definitionFactory = $container->getDefinition('evrinoma.'.$this->getAlias().'.factory');
@@ -75,7 +83,7 @@ class EvrinomaFcrExtension extends Extension
             [
                 '' => [
                     'db_driver' => 'evrinoma.'.$this->getAlias().'.storage',
-                    'entity'    => 'evrinoma.'.$this->getAlias().'.entity',
+                    'entity' => 'evrinoma.'.$this->getAlias().'.entity',
                 ],
             ]
         );
@@ -100,8 +108,8 @@ class EvrinomaFcrExtension extends Extension
                 $config['decorates'],
                 [
                     '' => [
-                        'command'       => 'evrinoma.'.$this->getAlias().'.decorates.command',
-                        'query'         => 'evrinoma.'.$this->getAlias().'.decorates.query',
+                        'command' => 'evrinoma.'.$this->getAlias().'.decorates.command',
+                        'query' => 'evrinoma.'.$this->getAlias().'.decorates.query',
                         'pre_validator' => 'evrinoma.'.$this->getAlias().'.decorates.pre.validator',
                     ],
                 ]
@@ -109,12 +117,11 @@ class EvrinomaFcrExtension extends Extension
         }
     }
 
-
     private function wireConstraintTag(ContainerBuilder $container): void
     {
         foreach ($container->getDefinitions() as $key => $definition) {
             switch (true) {
-                case strpos($key, FcrPass::FCR_CONSTRAINT) !== false :
+                case str_contains($key, FcrPass::FCR_CONSTRAINT)   :
                     $definition->addTag(FcrPass::FCR_CONSTRAINT);
                     break;
                 default:
@@ -124,7 +131,7 @@ class EvrinomaFcrExtension extends Extension
 
     private function wireRepository(ContainerBuilder $container, Reference $doctrineRegistry, string $class): void
     {
-        $definitionRepository    = $container->getDefinition('evrinoma.'.$this->getAlias().'.repository');
+        $definitionRepository = $container->getDefinition('evrinoma.'.$this->getAlias().'.repository');
         $definitionQueryMediator = $container->getDefinition('evrinoma.'.$this->getAlias().'.query.mediator');
         $definitionRepository->setArgument(0, $doctrineRegistry);
         $definitionRepository->setArgument(1, $class);
@@ -154,10 +161,8 @@ class EvrinomaFcrExtension extends Extension
         $definitionApiController->setArgument(1, $class);
     }
 
-
     public function getAlias()
     {
         return EvrinomaFcrBundle::FCR_BUNDLE;
     }
-
 }

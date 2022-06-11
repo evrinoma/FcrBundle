@@ -1,7 +1,17 @@
 <?php
 
-namespace Evrinoma\FcrBundle\Controller;
+declare(strict_types=1);
 
+/*
+ * This file is part of the package.
+ *
+ * (c) Nikolay Nikolaev <evrinoma@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Evrinoma\FcrBundle\Controller;
 
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Evrinoma\DtoBundle\Factory\FactoryDtoInterface;
@@ -24,7 +34,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 final class FcrApiController extends AbstractApiController implements ApiControllerInterface
 {
-
     private string $dtoClass;
     /**
      * @var ?Request
@@ -47,21 +56,19 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      */
     private DtoPreValidator $preValidator;
 
-
     public function __construct(SerializerInterface $serializer, RequestStack $requestStack, FactoryDtoInterface $factoryDto, CommandManagerInterface $commandManager, QueryManagerInterface $queryManager, DtoPreValidator $preValidator, string $dtoClass)
     {
         parent::__construct($serializer);
-        $this->request        = $requestStack->getCurrentRequest();
-        $this->factoryDto     = $factoryDto;
+        $this->request = $requestStack->getCurrentRequest();
+        $this->factoryDto = $factoryDto;
         $this->commandManager = $commandManager;
-        $this->queryManager   = $queryManager;
-        $this->dtoClass       = $dtoClass;
-        $this->preValidator   = $preValidator;
+        $this->queryManager = $queryManager;
+        $this->dtoClass = $dtoClass;
+        $this->preValidator = $preValidator;
     }
 
-
     /**
-     * @Rest\Post("/api/fcr/create", options={"expose"=true}, name="api_fcr_create")
+     * @Rest\Post("/api/fcr/create", options={"expose": true}, name="api_fcr_create")
      * @OA\Post(
      *     tags={"fcr"},
      *     description="the method perform create fcr",
@@ -69,27 +76,27 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
-     *               example={
-     *                  "class":"Evrinoma\FcrBundle\Dto\FcrApiDto",
-     *                  "id":"48",
-     *                  "description":"Интертех",
-     *                  },
-     *               type="object",
-     *               @OA\Property(property="class",type="string",default="Evrinoma\FcrBundle\Dto\FcrApiDto"),
-     *               @OA\Property(property="id",type="string"),
-     *               @OA\Property(property="description",type="string"),
-     *            )
+     *                 example={
+     *                     "class": "Evrinoma\FcrBundle\Dto\FcrApiDto",
+     *                     "id": "48",
+     *                     "description": "Интертех",
+     *                 },
+     *                 type="object",
+     *                 @OA\Property(property="class", type="string", default="Evrinoma\FcrBundle\Dto\FcrApiDto"),
+     *                 @OA\Property(property="id", type="string"),
+     *                 @OA\Property(property="description", type="string"),
+     *             )
      *         )
      *     )
      * )
-     * @OA\Response(response=200,description="Create fcr")
+     * @OA\Response(response=200, description="Create fcr")
      *
      * @return JsonResponse
      */
     public function postAction(): JsonResponse
     {
         /** @var FcrApiDtoInterface $fcrApiDto */
-        $fcrApiDto      = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        $fcrApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
         $commandManager = $this->commandManager;
 
         $this->commandManager->setRestCreated();
@@ -97,7 +104,7 @@ final class FcrApiController extends AbstractApiController implements ApiControl
             $this->preValidator->onPost($fcrApiDto);
 
             $json = [];
-            $em   = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
 
             $em->transactional(
                 function () use ($fcrApiDto, $commandManager, &$json) {
@@ -112,7 +119,7 @@ final class FcrApiController extends AbstractApiController implements ApiControl
     }
 
     /**
-     * @Rest\Put("/api/fcr/save", options={"expose"=true}, name="api_fcr_save")
+     * @Rest\Put("/api/fcr/save", options={"expose": true}, name="api_fcr_save")
      * @OA\Put(
      *     tags={"fcr"},
      *     description="the method perform save fcr for current entity",
@@ -120,36 +127,36 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      *         @OA\MediaType(
      *             mediaType="application/json",
      *             @OA\Schema(
-     *               example={
-     *                  "class":"Evrinoma\FcrBundle\Dto\FcrApiDto",
-     *                  "active": "b",
-     *                  "id":"48",
-     *                  "description":"Интертех",
-     *                  },
-     *               type="object",
-     *               @OA\Property(property="class",type="string",default="Evrinoma\FcrBundle\Dto\FcrApiDto"),
-     *               @OA\Property(property="id",type="string"),
-     *               @OA\Property(property="description",type="string"),
-     *               @OA\Property(property="active",type="string")
-     *            )
+     *                 example={
+     *                     "class": "Evrinoma\FcrBundle\Dto\FcrApiDto",
+     *                     "active": "b",
+     *                     "id": "48",
+     *                     "description": "Интертех",
+     *                 },
+     *                 type="object",
+     *                 @OA\Property(property="class", type="string", default="Evrinoma\FcrBundle\Dto\FcrApiDto"),
+     *                 @OA\Property(property="id", type="string"),
+     *                 @OA\Property(property="description", type="string"),
+     *                 @OA\Property(property="active", type="string")
+     *             )
      *         )
      *     )
      * )
-     * @OA\Response(response=200,description="Save code")
+     * @OA\Response(response=200, description="Save code")
      *
      * @return JsonResponse
      */
     public function putAction(): JsonResponse
     {
         /** @var FcrApiDtoInterface $fcrApiDto */
-        $fcrApiDto      = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
+        $fcrApiDto = $this->factoryDto->setRequest($this->request)->createDto($this->dtoClass);
         $commandManager = $this->commandManager;
 
         try {
             $this->preValidator->onPut($fcrApiDto);
 
             $json = [];
-            $em   = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
 
             $em->transactional(
                 function () use ($fcrApiDto, $commandManager, &$json) {
@@ -164,7 +171,7 @@ final class FcrApiController extends AbstractApiController implements ApiControl
     }
 
     /**
-     * @Rest\Delete("/api/fcr/delete", options={"expose"=true}, name="api_fcr_delete")
+     * @Rest\Delete("/api/fcr/delete", options={"expose": true}, name="api_fcr_delete")
      * @OA\Delete(
      *     tags={"fcr"},
      *     @OA\Parameter(
@@ -173,23 +180,23 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      *         name="class",
      *         required=true,
      *         @OA\Schema(
-     *           type="string",
-     *           default="Evrinoma\FcrBundle\Dto\FcrApiDto",
-     *           readOnly=true
+     *             type="string",
+     *             default="Evrinoma\FcrBundle\Dto\FcrApiDto",
+     *             readOnly=true
      *         )
      *     ),
-     *      @OA\Parameter(
+     *     @OA\Parameter(
      *         description="id Entity",
      *         in="query",
      *         name="id",
      *         required=true,
      *         @OA\Schema(
-     *           type="string",
-     *           default="3",
+     *             type="string",
+     *             default="3",
      *         )
      *     )
      * )
-     * @OA\Response(response=200,description="Delete fcr")
+     * @OA\Response(response=200, description="Delete fcr")
      *
      * @return JsonResponse
      */
@@ -204,7 +211,7 @@ final class FcrApiController extends AbstractApiController implements ApiControl
         try {
             $this->preValidator->onDelete($fcrApiDto);
             $json = [];
-            $em   = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
 
             $em->transactional(
                 function () use ($fcrApiDto, $commandManager, &$json) {
@@ -220,7 +227,7 @@ final class FcrApiController extends AbstractApiController implements ApiControl
     }
 
     /**
-     * @Rest\Get("/api/fcr/criteria", options={"expose"=true}, name="api_fcr_criteria")
+     * @Rest\Get("/api/fcr/criteria", options={"expose": true}, name="api_fcr_criteria")
      * @OA\Get(
      *     tags={"fcr"},
      *     @OA\Parameter(
@@ -229,29 +236,29 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      *         name="class",
      *         required=true,
      *         @OA\Schema(
-     *           type="string",
-     *           default="Evrinoma\FcrBundle\Dto\FcrApiDto",
-     *           readOnly=true
+     *             type="string",
+     *             default="Evrinoma\FcrBundle\Dto\FcrApiDto",
+     *             readOnly=true
      *         )
      *     ),
-     *      @OA\Parameter(
+     *     @OA\Parameter(
      *         description="id Entity",
      *         in="query",
      *         name="id",
      *         @OA\Schema(
-     *           type="string",
+     *             type="string",
      *         )
      *     ),
-     *      @OA\Parameter(
+     *     @OA\Parameter(
      *         description="description",
      *         in="query",
      *         name="description",
      *         @OA\Schema(
-     *           type="string",
+     *             type="string",
      *         )
      *     )
      * )
-     * @OA\Response(response=200,description="Return fcr")
+     * @OA\Response(response=200, description="Return fcr")
      *
      * @return JsonResponse
      */
@@ -269,9 +276,8 @@ final class FcrApiController extends AbstractApiController implements ApiControl
         return $this->setSerializeGroup('api_get_fcr')->json(['message' => 'Get fcr', 'data' => $json], $this->queryManager->getRestStatus());
     }
 
-
     /**
-     * @Rest\Get("/api/fcr", options={"expose"=true}, name="api_fcr")
+     * @Rest\Get("/api/fcr", options={"expose": true}, name="api_fcr")
      * @OA\Get(
      *     tags={"fcr"},
      *     @OA\Parameter(
@@ -280,23 +286,23 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      *         name="class",
      *         required=true,
      *         @OA\Schema(
-     *           type="string",
-     *           default="Evrinoma\FcrBundle\Dto\FcrApiDto",
-     *           readOnly=true
+     *             type="string",
+     *             default="Evrinoma\FcrBundle\Dto\FcrApiDto",
+     *             readOnly=true
      *         )
      *     ),
-     *      @OA\Parameter(
+     *     @OA\Parameter(
      *         description="id Entity",
      *         in="query",
      *         name="id",
      *         required=true,
      *         @OA\Schema(
-     *           type="string",
-     *           default="3",
+     *             type="string",
+     *             default="3",
      *         )
      *     )
      * )
-     * @OA\Response(response=200,description="Return fcr")
+     * @OA\Response(response=200, description="Return fcr")
      *
      * @return JsonResponse
      */
@@ -341,5 +347,4 @@ final class FcrApiController extends AbstractApiController implements ApiControl
 
         return ['errors' => $e->getMessage()];
     }
-
 }

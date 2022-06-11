@@ -1,5 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the package.
+ *
+ * (c) Nikolay Nikolaev <evrinoma@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Evrinoma\FcrBundle\DependencyInjection\Compiler;
 
 use Evrinoma\FcrBundle\DependencyInjection\EvrinomaFcrExtension;
@@ -11,25 +22,22 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class MapEntityPass extends AbstractMapEntity implements CompilerPassInterface
 {
-
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function process(ContainerBuilder $container)
     {
         $this->setContainer($container);
 
-        $driver                    = $container->findDefinition('doctrine.orm.default_metadata_driver');
+        $driver = $container->findDefinition('doctrine.orm.default_metadata_driver');
         $referenceAnnotationReader = new Reference('annotations.reader');
 
         $this->cleanMetadata($driver, [EvrinomaFcrExtension::ENTITY]);
 
         $entityFcr = $container->getParameter('evrinoma.fcr.entity');
-        if ((strpos($entityFcr, EvrinomaFcrExtension::ENTITY) !== false)) {
+        if ((str_contains($entityFcr, EvrinomaFcrExtension::ENTITY))) {
             $this->loadMetadata($driver, $referenceAnnotationReader, '%s/Model/Fcr', '%s/Entity/Fcr');
         }
-        $this->addResolveTargetEntity([$entityFcr => [FcrInterface::class => [],],], false);
+        $this->addResolveTargetEntity([$entityFcr => [FcrInterface::class => []]], false);
     }
-
-
 }

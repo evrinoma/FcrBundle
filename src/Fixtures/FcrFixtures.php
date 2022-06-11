@@ -1,5 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the package.
+ *
+ * (c) Nikolay Nikolaev <evrinoma@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Evrinoma\FcrBundle\Fixtures;
 
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
@@ -10,7 +21,6 @@ use Evrinoma\TestUtilsBundle\Fixtures\AbstractFixture;
 
 class FcrFixtures extends AbstractFixture implements FixtureGroupInterface, OrderedFixtureInterface
 {
-
     protected static array $data = [
         ['id' => 48, 'description' => 'ite', 'active' => 'a', 'created_at' => '2008-10-23 10:21:50'],
         ['id' => 10001, 'description' => 'kzkt', 'active' => 'a', 'created_at' => '2015-10-23 10:21:50'],
@@ -23,17 +33,17 @@ class FcrFixtures extends AbstractFixture implements FixtureGroupInterface, Orde
 
     protected static string $class = BaseFcr::class;
 
-
     /**
      * @param ObjectManager $manager
      *
      * @return $this
+     *
      * @throws \Exception
      */
     protected function create(ObjectManager $manager): self
     {
         $short = self::getReferenceName();
-        $i     = 0;
+        $i = 0;
 
         foreach (static::$data as $record) {
             $entity = new BaseFcr();
@@ -44,12 +54,11 @@ class FcrFixtures extends AbstractFixture implements FixtureGroupInterface, Orde
                 ->setActive($record['active']);
             $this->addReference($short.$i, $entity);
             $manager->persist($entity);
-            $i++;
+            ++$i;
         }
 
         return $this;
     }
-
 
     public static function getGroups(): array
     {

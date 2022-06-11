@@ -1,14 +1,23 @@
 <?php
 
-namespace Evrinoma\FcrBundle\Tests\Functional\Helper;
+declare(strict_types=1);
 
+/*
+ * This file is part of the package.
+ *
+ * (c) Nikolay Nikolaev <evrinoma@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace Evrinoma\FcrBundle\Tests\Functional\Helper;
 
 use PHPUnit\Framework\Assert;
 
 trait BaseFcrTestTrait
 {
-
-    protected function assertGet(int $id): array
+    protected function assertGet(string $id): array
     {
         $find = $this->get($id);
         $this->testResponseStatusOK();
@@ -60,5 +69,4 @@ trait BaseFcrTestTrait
         Assert::assertArrayHasKey('description', $entity['data']);
         Assert::assertArrayHasKey('active', $entity['data']);
     }
-
 }

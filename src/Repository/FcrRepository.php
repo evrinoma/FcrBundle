@@ -1,5 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the package.
+ *
+ * (c) Nikolay Nikolaev <evrinoma@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Evrinoma\FcrBundle\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -7,17 +18,15 @@ use Doctrine\ORM\ORMException;
 use Doctrine\ORM\ORMInvalidArgumentException;
 use Doctrine\Persistence\ManagerRegistry;
 use Evrinoma\FcrBundle\Dto\FcrApiDtoInterface;
-use Evrinoma\FcrBundle\Exception\FcrProxyException;
 use Evrinoma\FcrBundle\Exception\FcrCannotBeSavedException;
 use Evrinoma\FcrBundle\Exception\FcrNotFoundException;
+use Evrinoma\FcrBundle\Exception\FcrProxyException;
 use Evrinoma\FcrBundle\Mediator\QueryMediatorInterface;
 use Evrinoma\FcrBundle\Model\Fcr\FcrInterface;
 
 class FcrRepository extends ServiceEntityRepository implements FcrRepositoryInterface
 {
-
     private QueryMediatorInterface $mediator;
-
 
     /**
      * @param ManagerRegistry        $registry
@@ -30,11 +39,11 @@ class FcrRepository extends ServiceEntityRepository implements FcrRepositoryInte
         $this->mediator = $mediator;
     }
 
-
     /**
      * @param FcrInterface $fcr
      *
      * @return bool
+     *
      * @throws FcrCannotBeSavedException
      * @throws ORMException
      */
@@ -59,11 +68,11 @@ class FcrRepository extends ServiceEntityRepository implements FcrRepositoryInte
         return true;
     }
 
-
     /**
      * @param FcrApiDtoInterface $dto
      *
      * @return array
+     *
      * @throws FcrNotFoundException
      */
     public function findByCriteria(FcrApiDtoInterface $dto): array
@@ -74,8 +83,8 @@ class FcrRepository extends ServiceEntityRepository implements FcrRepositoryInte
 
         $fcrs = $this->mediator->getResult($dto, $builder);
 
-        if (count($fcrs) === 0) {
-            throw new FcrNotFoundException("Cannot find fcr by findByCriteria");
+        if (0 === \count($fcrs)) {
+            throw new FcrNotFoundException('Cannot find fcr by findByCriteria');
         }
 
         return $fcrs;
@@ -87,6 +96,7 @@ class FcrRepository extends ServiceEntityRepository implements FcrRepositoryInte
      * @param null $lockVersion
      *
      * @return mixed
+     *
      * @throws FcrNotFoundException
      */
     public function find($id, $lockMode = null, $lockVersion = null): FcrInterface
@@ -94,7 +104,7 @@ class FcrRepository extends ServiceEntityRepository implements FcrRepositoryInte
         /** @var FcrInterface $fcr */
         $fcr = parent::find($id);
 
-        if ($fcr === null) {
+        if (null === $fcr) {
             throw new FcrNotFoundException("Cannot find fcr with id $id");
         }
 
@@ -105,6 +115,7 @@ class FcrRepository extends ServiceEntityRepository implements FcrRepositoryInte
      * @param string $id
      *
      * @return FcrInterface
+     *
      * @throws FcrProxyException
      * @throws ORMException
      */
@@ -120,5 +131,4 @@ class FcrRepository extends ServiceEntityRepository implements FcrRepositoryInte
 
         return $fcr;
     }
-
 }

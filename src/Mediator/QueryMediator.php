@@ -1,5 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the package.
+ *
+ * (c) Nikolay Nikolaev <evrinoma@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Evrinoma\FcrBundle\Mediator;
 
 use Doctrine\ORM\QueryBuilder;
@@ -10,9 +21,7 @@ use Evrinoma\UtilsBundle\Mediator\AbstractQueryMediator;
 
 class QueryMediator extends AbstractQueryMediator implements QueryMediatorInterface
 {
-
     protected static string $alias = AliasInterface::FCR;
-
 
     /**
      * @param DtoInterface $dto
@@ -43,5 +52,4 @@ class QueryMediator extends AbstractQueryMediator implements QueryMediatorInterf
                 ->setParameter('active', $dto->getActive());
         }
     }
-
 }

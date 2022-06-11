@@ -1,18 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the package.
+ *
+ * (c) Nikolay Nikolaev <evrinoma@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Evrinoma\FcrBundle\Tests\Functional;
 
 use Evrinoma\TestUtilsBundle\Kernel\AbstractApiKernel;
 
 /**
- * Kernel
+ * Kernel.
  */
 class Kernel extends AbstractApiKernel
 {
-
     protected string $bundlePrefix = 'FcrBundle';
     protected string $rootDir = __DIR__;
-
 
     /**
      * {@inheritdoc}
@@ -24,7 +33,6 @@ class Kernel extends AbstractApiKernel
 
     protected function getBundleConfig(): array
     {
-        return  ['framework.yaml', 'jms_serializer.yaml'];
+        return ['framework.yaml', 'jms_serializer.yaml'];
     }
-
 }

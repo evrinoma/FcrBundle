@@ -1,5 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the package.
+ *
+ * (c) Nikolay Nikolaev <evrinoma@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Evrinoma\FcrBundle\Manager;
 
 use Evrinoma\FcrBundle\Dto\FcrApiDtoInterface;
@@ -20,12 +31,10 @@ final class CommandManager implements CommandManagerInterface, RestInterface
 {
     use RestTrait;
 
-
     private FcrCommandRepositoryInterface $repository;
     private ValidatorInterface            $validator;
     private FcrFactoryInterface           $factory;
     private CommandMediatorInterface      $mediator;
-
 
     /**
      * @param ValidatorInterface            $validator
@@ -34,17 +43,17 @@ final class CommandManager implements CommandManagerInterface, RestInterface
      */
     public function __construct(ValidatorInterface $validator, FcrCommandRepositoryInterface $repository, FcrFactoryInterface $factory, CommandMediatorInterface $mediator)
     {
-        $this->validator  = $validator;
+        $this->validator = $validator;
         $this->repository = $repository;
-        $this->factory    = $factory;
-        $this->mediator   = $mediator;
+        $this->factory = $factory;
+        $this->mediator = $mediator;
     }
-
 
     /**
      * @param FcrApiDtoInterface $dto
      *
      * @return FcrInterface
+     *
      * @throws FcrInvalidException
      * @throws FcrCannotBeCreatedException
      * @throws FcrCannotBeSavedException
@@ -57,9 +66,8 @@ final class CommandManager implements CommandManagerInterface, RestInterface
 
         $errors = $this->validator->validate($fcr);
 
-        if (count($errors) > 0) {
-
-            $errorsString = (string)$errors;
+        if (\count($errors) > 0) {
+            $errorsString = (string) $errors;
 
             throw new FcrInvalidException($errorsString);
         }
@@ -73,6 +81,7 @@ final class CommandManager implements CommandManagerInterface, RestInterface
      * @param FcrApiDtoInterface $dto
      *
      * @return FcrInterface
+     *
      * @throws FcrInvalidException
      * @throws FcrNotFoundException
      * @throws FcrCannotBeSavedException
@@ -89,9 +98,8 @@ final class CommandManager implements CommandManagerInterface, RestInterface
 
         $errors = $this->validator->validate($fcr);
 
-        if (count($errors) > 0) {
-
-            $errorsString = (string)$errors;
+        if (\count($errors) > 0) {
+            $errorsString = (string) $errors;
 
             throw new FcrInvalidException($errorsString);
         }
@@ -122,10 +130,8 @@ final class CommandManager implements CommandManagerInterface, RestInterface
         }
     }
 
-
     public function getRestStatus(): int
     {
         return $this->status;
     }
-
 }
