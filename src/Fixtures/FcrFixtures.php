@@ -46,7 +46,7 @@ class FcrFixtures extends AbstractFixture implements FixtureGroupInterface, Orde
         $i = 0;
 
         foreach (static::$data as $record) {
-            $entity = new BaseFcr();
+            $entity = new static::$class();
             $entity
                 ->setId($record['id'])
                 ->setDescription($record['description'])
