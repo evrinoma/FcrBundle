@@ -16,6 +16,8 @@ namespace Evrinoma\FcrBundle\DependencyInjection;
 use Evrinoma\FcrBundle\DependencyInjection\Compiler\Constraint\Property\FcrPass;
 use Evrinoma\FcrBundle\Dto\FcrApiDto;
 use Evrinoma\FcrBundle\EvrinomaFcrBundle;
+use Evrinoma\FcrBundle\Repository\FcrCommandRepositoryInterface;
+use Evrinoma\FcrBundle\Repository\FcrQueryRepositoryInterface;
 use Evrinoma\UtilsBundle\DependencyInjection\HelperTrait;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Alias;
@@ -136,6 +138,8 @@ class EvrinomaFcrExtension extends Extension
         $definitionRepository->setArgument(0, $doctrineRegistry);
         $definitionRepository->setArgument(1, $class);
         $definitionRepository->setArgument(2, $definitionQueryMediator);
+        $container->addAliases([FcrCommandRepositoryInterface::class => 'evrinoma.'.$this->getAlias().'.repository']);
+        $container->addAliases([FcrQueryRepositoryInterface::class => 'evrinoma.'.$this->getAlias().'.repository']);
     }
 
     private function wireFactory(ContainerBuilder $container, string $class, string $paramClass): void
