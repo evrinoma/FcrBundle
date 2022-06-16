@@ -12,7 +12,8 @@
         decorates:
           command - декоратор mediator команд цфо 
           query - декоратор mediator запросов цфо
-          pre_validator - декоратор валидатора цфо
+        services:
+          pre_validator - переопределение сервиса валидатора цфо
 
 # CQRS model
 
