@@ -16,6 +16,7 @@ namespace Evrinoma\FcrBundle;
 use Evrinoma\FcrBundle\DependencyInjection\Compiler\Constraint\Property\FcrPass;
 use Evrinoma\FcrBundle\DependencyInjection\Compiler\DecoratorPass;
 use Evrinoma\FcrBundle\DependencyInjection\Compiler\MapEntityPass;
+use Evrinoma\FcrBundle\DependencyInjection\Compiler\ServicePass;
 use Evrinoma\FcrBundle\DependencyInjection\EvrinomaFcrExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -30,6 +31,7 @@ class EvrinomaFcrBundle extends Bundle
         $container
             ->addCompilerPass(new MapEntityPass($this->getNamespace(), $this->getPath()))
             ->addCompilerPass(new DecoratorPass())
+            ->addCompilerPass(new ServicePass())
             ->addCompilerPass(new FcrPass())
         ;
     }

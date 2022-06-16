@@ -105,16 +105,43 @@ class EvrinomaFcrExtension extends Extension
         $this->wireConstraintTag($container);
 
         if ($config['decorates']) {
+            $remap = [];
+            foreach ($config['decorates'] as $key => $service) {
+                if (null !== $service) {
+                    switch ($key) {
+                        case 'command':
+                            $remap['command'] = 'evrinoma.'.$this->getAlias().'.decorates.command';
+                            break;
+                        case 'query':
+                            $remap['query'] = 'evrinoma.'.$this->getAlias().'.decorates.query';
+                            break;
+                    }
+                }
+            }
+
             $this->remapParametersNamespaces(
                 $container,
                 $config['decorates'],
-                [
-                    '' => [
-                        'command' => 'evrinoma.'.$this->getAlias().'.decorates.command',
-                        'query' => 'evrinoma.'.$this->getAlias().'.decorates.query',
-                        'pre_validator' => 'evrinoma.'.$this->getAlias().'.decorates.pre.validator',
-                    ],
-                ]
+                ['' => $remap]
+            );
+        }
+
+        if ($config['services']) {
+            $remap = [];
+            foreach ($config['services'] as $key => $service) {
+                if (null !== $service) {
+                    switch ($key) {
+                        case 'pre_validator':
+                            $remap['pre_validator'] = 'evrinoma.'.$this->getAlias().'.services.pre.validator';
+                            break;
+                    }
+                }
+            }
+
+            $this->remapParametersNamespaces(
+                $container,
+                $config['services'],
+                ['' => $remap]
             );
         }
     }
