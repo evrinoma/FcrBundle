@@ -142,7 +142,7 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      *         )
      *     )
      * )
-     * @OA\Response(response=200, description="Save code")
+     * @OA\Response(response=200, description="Save fcr")
      *
      * @return JsonResponse
      */
