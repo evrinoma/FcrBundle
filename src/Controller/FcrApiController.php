@@ -21,7 +21,7 @@ use Evrinoma\FcrBundle\Exception\FcrInvalidException;
 use Evrinoma\FcrBundle\Exception\FcrNotFoundException;
 use Evrinoma\FcrBundle\Manager\CommandManagerInterface;
 use Evrinoma\FcrBundle\Manager\QueryManagerInterface;
-use Evrinoma\FcrBundle\PreValidator\DtoPreValidator;
+use Evrinoma\FcrBundle\PreValidator\DtoPreValidatorInterface;
 use Evrinoma\UtilsBundle\Controller\AbstractApiController;
 use Evrinoma\UtilsBundle\Controller\ApiControllerInterface;
 use Evrinoma\UtilsBundle\Rest\RestInterface;
@@ -52,11 +52,11 @@ final class FcrApiController extends AbstractApiController implements ApiControl
      */
     private FactoryDtoInterface $factoryDto;
     /**
-     * @var DtoPreValidator
+     * @var DtoPreValidatorInterface
      */
-    private DtoPreValidator $preValidator;
+    private DtoPreValidatorInterface $preValidator;
 
-    public function __construct(SerializerInterface $serializer, RequestStack $requestStack, FactoryDtoInterface $factoryDto, CommandManagerInterface $commandManager, QueryManagerInterface $queryManager, DtoPreValidator $preValidator, string $dtoClass)
+    public function __construct(SerializerInterface $serializer, RequestStack $requestStack, FactoryDtoInterface $factoryDto, CommandManagerInterface $commandManager, QueryManagerInterface $queryManager, DtoPreValidatorInterface $preValidator, string $dtoClass)
     {
         parent::__construct($serializer);
         $this->request = $requestStack->getCurrentRequest();
