@@ -20,6 +20,6 @@ use Evrinoma\DtoCommon\ValueObject\Preserve\IdTrait;
 trait FcrApiDtoTrait
 {
     use ActiveTrait;
-    use IdTrait;
     use DescriptionTrait;
+    use IdTrait;
 }
