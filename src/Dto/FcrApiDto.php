@@ -39,7 +39,7 @@ class FcrApiDto extends AbstractDto implements FcrApiDtoInterface
                 $this->setActive($active);
             }
             if ($id) {
-                $this->setId($id);
+                $this->idParseString($id);
             }
             if ($description) {
                 $this->setDescription($description);

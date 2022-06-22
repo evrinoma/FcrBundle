@@ -25,7 +25,7 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
         /* @var $dto FcrApiDtoInterface */
         $entity
             ->setDescription($dto->getDescription())
-            ->setId($dto->Id()->toInt())
+            ->setId($dto->getId())
             ->setUpdatedAt(new \DateTimeImmutable())
             ->setActive($dto->getActive());
 
@@ -44,7 +44,7 @@ class CommandMediator extends AbstractCommandMediator implements CommandMediator
         /* @var $dto FcrApiDtoInterface */
         $entity
             ->setDescription($dto->getDescription())
-            ->setId($dto->Id()->toInt())
+            ->setId($dto->getId())
             ->setCreatedAt(new \DateTimeImmutable())
             ->setActiveToActive();
 
