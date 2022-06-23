@@ -40,6 +40,7 @@ final class CommandManager implements CommandManagerInterface, RestInterface
      * @param ValidatorInterface            $validator
      * @param FcrCommandRepositoryInterface $repository
      * @param FcrFactoryInterface           $factory
+     * @param CommandMediatorInterface      $mediator
      */
     public function __construct(ValidatorInterface $validator, FcrCommandRepositoryInterface $repository, FcrFactoryInterface $factory, CommandMediatorInterface $mediator)
     {

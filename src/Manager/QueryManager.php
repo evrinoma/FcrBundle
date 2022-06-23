@@ -60,7 +60,11 @@ final class QueryManager implements QueryManagerInterface, RestInterface
     public function proxy(FcrApiDtoInterface $dto): FcrInterface
     {
         try {
-            $fcr = $this->repository->proxy($dto->idToString());
+            if ($dto->hasId()) {
+                $fcr = $this->repository->proxy($dto->idToString());
+            } else {
+                throw new FcrProxyException('Id value is not set while trying get proxy object');
+            }
         } catch (FcrProxyException $e) {
             throw $e;
         }
