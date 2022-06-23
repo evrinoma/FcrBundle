@@ -24,7 +24,7 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder(EvrinomaFcrBundle::FCR_BUNDLE);
+        $treeBuilder = new TreeBuilder(EvrinomaFcrBundle::BUNDLE);
         $rootNode = $treeBuilder->getRootNode();
         $supportedDrivers = ['orm'];
 

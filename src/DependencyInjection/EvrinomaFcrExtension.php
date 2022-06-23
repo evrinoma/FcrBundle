@@ -194,6 +194,6 @@ class EvrinomaFcrExtension extends Extension
 
     public function getAlias()
     {
-        return EvrinomaFcrBundle::FCR_BUNDLE;
+        return EvrinomaFcrBundle::BUNDLE;
     }
 }

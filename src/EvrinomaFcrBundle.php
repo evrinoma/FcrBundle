@@ -23,7 +23,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class EvrinomaFcrBundle extends Bundle
 {
-    public const FCR_BUNDLE = 'fcr';
+    public const BUNDLE = 'fcr';
 
     public function build(ContainerBuilder $container)
     {

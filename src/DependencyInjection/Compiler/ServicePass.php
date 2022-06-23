@@ -24,11 +24,11 @@ class ServicePass extends AbstractRecursivePass
      */
     public function process(ContainerBuilder $container)
     {
-        $servicePreValidator = $container->hasParameter('evrinoma.'.EvrinomaFcrBundle::FCR_BUNDLE.'.services.pre.validator');
+        $servicePreValidator = $container->hasParameter('evrinoma.'.EvrinomaFcrBundle::BUNDLE.'.services.pre.validator');
         if ($servicePreValidator) {
-            $servicePreValidator = $container->getParameter('evrinoma.'.EvrinomaFcrBundle::FCR_BUNDLE.'.services.pre.validator');
+            $servicePreValidator = $container->getParameter('evrinoma.'.EvrinomaFcrBundle::BUNDLE.'.services.pre.validator');
             $preValidator = $container->getDefinition($servicePreValidator);
-            $apiController = $container->getDefinition('evrinoma.'.EvrinomaFcrBundle::FCR_BUNDLE.'.api.controller');
+            $apiController = $container->getDefinition('evrinoma.'.EvrinomaFcrBundle::BUNDLE.'.api.controller');
             $apiController->setArgument(5, $preValidator);
         }
     }
