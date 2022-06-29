@@ -26,15 +26,15 @@ class DtoPreValidator extends AbstractPreValidator implements DtoPreValidatorInt
 
     public function onPut(DtoInterface $dto): void
     {
-        $this->check($dto);
+        $this->checkId($dto);
     }
 
     public function onDelete(DtoInterface $dto): void
     {
-        $this->check($dto);
+        $this->checkId($dto);
     }
 
-    private function check(DtoInterface $dto): void
+    private function checkId(DtoInterface $dto): void
     {
         /** @var FcrApiDtoInterface $dto */
         if (!$dto->hasId()) {
