@@ -8,7 +8,7 @@
         "Financial responsibility center"
     ],
     "type": "symfony-bundle",
-    "license": "MIT",
+    "license": "proprietary",
     "authors": [
         {
             "name": "Nikolay Nikolaev",
